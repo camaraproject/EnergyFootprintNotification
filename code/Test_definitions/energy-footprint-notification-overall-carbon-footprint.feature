@@ -1,4 +1,4 @@
-Feature: CAMARA Energy Footprint Notification API v0.1.0-alpha.1 - Operation overall-carbon-footprint
+Feature: CAMARA Energy Footprint Notification API v0.1.0-rc.1 - Operation overall-carbon-footprint
 # Input to be provided by the implementation to the tester
 #
 # Implementation indications:
