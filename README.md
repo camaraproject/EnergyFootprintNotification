@@ -24,12 +24,8 @@ Sandbox API Repository to describe, develop, document, and test the EnergyFootpr
 ## Release Information
 
 Note: Please be aware that the project will have frequent updates to the main branch. There are no compatibility guarantees associated with code in any branch, including main, until a new release is created. For example, changes may be reverted before a release is created. **For best results, use the latest available release**.
-* **The latest available version (pre-release) of the CAMARA EnergyFootprintNotification API is v0.9.0-alpha.1**
-* The pre-release Tag is [r1.1](https://github.com/camaraproject/EnergyFootprintNotification/releases/tag/r1.1).
-- API definition **with inline documentation**:
-  - OpenAPI [YAML spec file](https://github.com/camaraproject/EnergyFootprintNotification/blob/r1.1/code/API_definitions/energy-footprint-notification.yaml)
-  - [View it on ReDoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/EnergyFootprintNotification/r1.1/code/API_definitions/energy-footprint-notification.yaml&nocors)
-  - [View it on Swagger Editor](https://camaraproject.github.io/swagger-ui/?url=https://raw.githubusercontent.com/camaraproject/EnergyFootprintNotification/r1.1/code/API_definitions/energy-footprint-notification.yaml)
+
+* **NEW**: Pre-release [r1.2](https://github.com/camaraproject/EnergyFootprintNotification/releases/tag/r1.2) with energy-footprint-notification v0.1.0-rc.1 is available.
 
 For changes see [CHANGELOG.md](https://github.com/camaraproject/TrafficInfluence/blob/main/CHANGELOG.md)
 
