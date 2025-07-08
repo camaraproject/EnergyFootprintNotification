@@ -19,4 +19,4 @@ Checklist for API energy-footprint-notification 0.1.0-rc.1 in r.1.2
 | 10 | API release numbering convention applied     |   M   |         M         |    M    |    M   |   N  |  |
 | 11 | Change log updated                           |   M   |         M         |    M    |    M   |   Y  |  |
 | 12 | Previous public-release was certified        |   O   |         O         |    O    |    M   |   N  |      |
-| 13 | API description (for marketing)              |   O   |         O         |    M    |    M   |   N  | [wiki link](https://lf-camaraproject.atlassian.net/wiki/xxx) |
+| 13 | API description (for marketing)              |   O   |         O         |    M    |    M   |   Y  | [wiki link](https://lf-camaraproject.atlassian.net/wiki/spaces/CAM/pages/81101707/EnergyFootprintNotification+API+description) |
