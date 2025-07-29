@@ -29,7 +29,7 @@ info:
     \
     **The main elements of the Energy Footprint API are:**\
     \
-    **TargetRequest:**
+    **ReportCreationRequest:**
     Information about the target service (as a
     set of applications) and the period of time of interest.
     It includes the paramenter "service" wich is an array of application
@@ -134,7 +134,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   x-camara-commonalities: 0.6
 externalDocs:
-  description: Product documentation at Camara
+  description: Product documentation at CAMARA
   url: https://github.com/camaraproject/EnergyFootprintNotification
 ############################################################################
 #                                     Servers                              #
@@ -181,7 +181,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TargetRequest'
+              $ref: '#/components/schemas/ReportCreationRequest'
       responses:
         '201':
           description: The request has been acquired. The request identifier is
@@ -197,7 +197,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TargetRequest'
+                $ref: '#/components/schemas/ReportCreationRequest'
         "400":
           $ref: "#/components/responses/Generic400"
         "401":
@@ -230,7 +230,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TargetRequest'
+              $ref: '#/components/schemas/ReportCreationRequest'
       responses:
         '201':
           description: The request has been acquired. The request identifier is
@@ -246,7 +246,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TargetRequest'
+                $ref: '#/components/schemas/ReportCreationRequest'
         "400":
           $ref: "#/components/responses/Generic400"
         "401":
@@ -364,6 +364,7 @@ components:
           description: 'https callback address where the notification must be
             POST-ed'
           type: string
+          format: uri
         sinkCredentials:
           description: Sink credential provides authorization information
             necessary to enable delivery of events to a target
@@ -389,10 +390,10 @@ components:
               description: Type of access token - MUST be set to bearer for now
               enum:
                 - "bearer"
-    TargetRequest:
+    ReportCreationRequest:
       description: resource containing the service under analysis and the
         callback information for the API Consumer to be notified with the
-        results of the analysis. If no "TimePeriod" is provided the analysis
+        results of the analysis. If no "timePeriod" is provided the analysis
         is performed from the activation of the first instance of the
         Application.
       type: object
@@ -404,21 +405,10 @@ components:
           items:
             $ref: '#/components/schemas/AppInstanceId'
         timePeriod:
-          properties:
-            startDate:
-              type: string
-              format: date-time
-              description: An instant of time, starting of the TimePeriod.
-            endDate:
-              type: string
-              format: date-time
-              description: An instant of time, ending of the TimePeriod.
-                If not included, then the period has no ending date.
-          required:
-            - startDate
+          $ref: "#/components/schemas/TimePeriod"
         notificationSink:
           $ref: '#/components/schemas/NotificationSink'
-        requestID:
+        requestId:
           type: string
           description: Identifier for the request. This
            parameter is returned by the API and must be used to update it.
@@ -458,6 +448,18 @@ components:
           * /cloudevents/spec/pull/123
           * 1-555-123-4567
       example: "https://notificationSendServer12.supertelco.com"
+    TimePeriod:
+      properties:
+        startDate:
+          type: string
+          format: date-time
+          description: An instant of time, starting of the TimePeriod.
+        endDate:
+          type: string
+          format: date-time
+          description: An instant of time, ending of the TimePeriod. If not included, then the period has no ending date.
+      required:
+        - startDate
     CloudEvent:
       description: The notification callback
       required:
@@ -508,7 +510,7 @@ components:
           type: object
           description: Event details payload
           properties:
-            requestID:
+            requestId:
               type: string
               description: Identifier for the request. This
                parameter correlates this response with the request.
