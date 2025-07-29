@@ -1,4 +1,4 @@
-Feature: CAMARA Energy Footprint Notification API v0.1.0-rc.1 - Operation overall-carbon-footprint
+Feature: CAMARA Energy Footprint Notification API v0.1.0-rc.1 - Operation calculate-carbon-footprint
 # Input to be provided by the implementation to the tester
 #
 # Implementation indications:
@@ -6,8 +6,8 @@ Feature: CAMARA Energy Footprint Notification API v0.1.0-rc.1 - Operation overal
 # Testing assets:
 # * One or more application instances whose carbon footprint can be evaluated.
 #
-  Background: Common overall-carbon-footprint setup
-    Given the path "/overall-carbon-footprint"
+  Background: Common calculate-carbon-footprint setup
+    Given the path "/calculate-carbon-footprint"
     And the header "Content-Type" is set to "application/json"
     And the header "Authorization" is set to a valid access token
     And the header "x-correlator" complies with the schema at "#/components/schemas/XCorrelator"
@@ -16,7 +16,7 @@ Feature: CAMARA Energy Footprint Notification API v0.1.0-rc.1 - Operation overal
   # Happy path scenarios
 
   # This first scenario serves as a minimum
-  @overall-energy-consumption_01_generic_success_scenario_one_instance
+  @calculate-energy-consumption_01_generic_success_scenario_one_instance
   Scenario: Common validations for any success scenario, just one instance id for an application is provided
     # Valid testing default request body compliant with the schema
     Given the request body property "$.service" carries one valid "$.AppInstanceId"
@@ -33,10 +33,10 @@ Feature: CAMARA Energy Footprint Notification API v0.1.0-rc.1 - Operation overal
     And within a limited period of time I should receive a callback at "/components/schemas/NotificationSink/sink"
     And the callback body is compliant with the OAS schema at "/components/callbacks/onCarbonFootprintCalculation" with "x-correlator" having the same value as the request header "x-correlator"
     And the callback carries the information defined in "/components/schemas/CloudEventCarbonFootprint"
-    And "/components/schemas/CloudEventCarbonFootprint" in the callback should contain the parameter "$.requestID" with the same value as in the 201 response of "/overall-carbon-footprint"
+    And "/components/schemas/CloudEventCarbonFootprint" in the callback should contain the parameter "$.requestID" with the same value as in the 201 response of "/calculate-carbon-footprint"
     And "/components/schemas/CloudEventCarbonFootprint" in the callback should contain the parameter"$.carbonFootprint" set to the aspected value
 
-  @overall-energy-consumption_02_more_instances
+  @calculate-energy-consumption_02_more_instances
   Scenario: multiple instance ids are provided
     Given the request body property "$.service" carries an array of valid "$.AppInstanceId"
     And "$.notificationSink" is set to a proper value
@@ -52,6 +52,6 @@ Feature: CAMARA Energy Footprint Notification API v0.1.0-rc.1 - Operation overal
     And within a limited period of time I should receive a callback at "/components/schemas/NotificationSink/sink"
     And the callback body is compliant with the OAS schema at "/components/callbacks/onCarbonFootprintCalculation" with "x-correlator" having the same value as the request header "x-correlator"
     And the callback carries the information defined in "/components/schemas/CloudEventCarbonFootprint"
-    And "/components/schemas/CloudEventCarbonFootprint" in the callback should contain the parameter "$.requestID" with the same value as in the 201 response of "/overall-carbon-footprint"
+    And "/components/schemas/CloudEventCarbonFootprint" in the callback should contain the parameter "$.requestID" with the same value as in the 201 response of "/calculate-carbon-footprint"
     And "/components/schemas/CloudEventCarbonFootprint" in the callback should contain the parameter"$.carbonFootprint"
     And the parameter"$.carbonFootprint" should be se to the aspected value as sum of the carbon footprint of all the application instances
