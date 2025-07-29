@@ -34,18 +34,16 @@ This is the first release candidate of the CAMARA EnergyFootprintNotification AP
   - [View it on ReDoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/EnergyFootprintNotification/r1.2/code/API_definitions/energy-footprint-notification.yaml&nocors)
   - [View it on Swagger Editor](https://camaraproject.github.io/swagger-ui/?url=https://raw.githubusercontent.com/camaraproject/EnergyFootprintNotification/r1.2/code/API_definitions/energy-footprint-notification.yaml)
 
-## Please note:
+### Added
 
-- This pre-release contains a release-candidate API version, there are bug fixes to be expected and incompatible changes in upcoming versions 
-- The release is suitable for implementers, but it is not recommended to use the API with customers in productive environments
-- The release scope is defined here: https://github.com/camaraproject/EnergyFootprintNotification/issues/50
+### Changed
 
-## What's New
+* Renamed operations: https://github.com/camaraproject/EnergyFootprintNotification/pull/83 
+* Changed OAuth2 with OpenId: https://github.com/camaraproject/EnergyFootprintNotification/pull/83
 
-* Support for the following use cases: https://github.com/camaraproject/EnergyFootprintNotification/discussions/11
+### Fixed
 
-## New Contributors
-* @FabrizioMoggio
+### Removed
 
 **Full Changelog**: https://github.com/camaraproject/EnergyFootprintNotification/commits/r1.1...r1.2
 
