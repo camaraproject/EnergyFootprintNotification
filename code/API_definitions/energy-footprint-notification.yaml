@@ -14,16 +14,14 @@ info:
     The scenario foresees a service provided by many applications, the Energy
     Footprint API provides the API Consumer (e.g. the Service Provider)
     with the information about the energy consumption and carbon
-    footprint (greenhouse gasses emissions) of the service produced by all
-    applications instances hosted by the Telco Operator.
-    The reported energy consumption and carbon footprint consider the energy
-    used to run the applications instances in the Data Centers and the energy
-    absorbed along the Operator's network to provide the service for the Telco
-    Operator's subscribers.
+    footprint (greenhouse gasses emissions) of the service produced by the
+    active applications instances hosted by the Telco Operator.
+    Note: This API is expected to be used in conjunction with, for example,
+    the CAMARA Edge Cloud APIs.
     \
     **Example use case and flow:**\
     \
-    [**Edge Service**](https://github.com/camaraproject/\
+    [**Edge Service energy report**](https://github.com/camaraproject/\
     EnergyFootprintNotification/blob/main/documentation/API_documentation/\
     EFN_UserStory_UseCase_1.md)\
     \
