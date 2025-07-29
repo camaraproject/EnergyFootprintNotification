@@ -173,7 +173,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/x-correlator'
       security:
-        - oAuth2:
+        - openId:
             - 'energy-footprint-notification:overall-energy-consumption:write'
             - 'energy-footprint-notification:overall-energy-consumption:read'
       requestBody:
@@ -223,7 +223,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/x-correlator'
       security:
-        - oAuth2:
+        - openId:
             - 'energy-footprint-notification:overall-carbon-footprint:write'
             - 'energy-footprint-notification:overall-carbon-footprint:read'
       requestBody:
@@ -266,22 +266,9 @@ paths:
 ############################################################################
 components:
   securitySchemes:
-    oAuth2:
-      type: oauth2
-      description: This API uses OAuth 2
-        [More info](https://api.example.com/docs/auth)
-      flows:
-        clientCredentials:
-          tokenUrl: 'https://example.com/oauth/token'
-          scopes:
-            'energy-footprint-notification:overall-energy-consumption:read':
-              Grants access to read-only data in the Energy resources
-            'energy-footprint-notification:overall-energy-consumption:write':
-              Grants write access to the Energy resources
-            'energy-footprint-notification:overall-carbon-footprint:read':
-              Grants access to read-only data in the Carbon Footprint resources
-            'energy-footprint-notification:overall-carbon-footprint:write':
-              Grants access to read-only data in the Carbon Footprint resources
+    openId:
+      type: openIdConnect
+      openIdConnectUrl: https://example.com/.well-known/openid-configuration
     notificationsBearerAuth:
       type: http
       scheme: bearer
@@ -665,7 +652,7 @@ components:
                       - PERMISSION_DENIED
           examples:
             GENERIC_403_PERMISSION_DENIED:
-              description: Permission denied. OAuth2 token access does not have
+              description: Permission denied. Access token does not have
                 the required scope or when the user fails operational security
               value:
                 status: 403
