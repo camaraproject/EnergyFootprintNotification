@@ -27,14 +27,14 @@ Feature: CAMARA Energy Footprint Notification API v0.1.0-rc.1 - Operation calcul
     And the response header "Content-Type" is "application/json"
     And the response header "x-correlator" has same value as the request header "x-correlator"
     # The response has to comply with the generic response schema which is part of the spec
-    And the response body complies with the OAS schema at "/components/schemas/TargetRequest"
+    And the response body complies with the OAS schema at "/components/schemas/ReportCreationRequest"
     And "$.requestID" is set to a proper value
-    # The received callback must be compliant and should carry the aspected values
+    # The received callback must be compliant and should carry the expected values
     And within a limited period of time I should receive a callback at "/components/schemas/NotificationSink/sink"
     And the callback body is compliant with the OAS schema at "/components/callbacks/onCarbonFootprintCalculation" with "x-correlator" having the same value as the request header "x-correlator"
     And the callback carries the information defined in "/components/schemas/CloudEventCarbonFootprint"
     And "/components/schemas/CloudEventCarbonFootprint" in the callback should contain the parameter "$.requestID" with the same value as in the 201 response of "/calculate-carbon-footprint"
-    And "/components/schemas/CloudEventCarbonFootprint" in the callback should contain the parameter"$.carbonFootprint" set to the aspected value
+    And "/components/schemas/CloudEventCarbonFootprint" in the callback should contain the parameter"$.carbonFootprint" set to the expected value
 
   @calculate-energy-consumption_02_more_instances
   Scenario: multiple instance ids are provided
@@ -46,12 +46,12 @@ Feature: CAMARA Energy Footprint Notification API v0.1.0-rc.1 - Operation calcul
     And the response header "Content-Type" is "application/json"
     And the response header "x-correlator" has same value as the request header "x-correlator"
     # The response has to comply with the generic response schema which is part of the spec
-    And the response body complies with the OAS schema at "/components/schemas/TargetRequest"
+    And the response body complies with the OAS schema at "/components/schemas/ReportCreationRequest"
     And "$.requestID" is set to a proper value
-    # The received callback must be compliant and should carry the aspected values
+    # The received callback must be compliant and should carry the expected values
     And within a limited period of time I should receive a callback at "/components/schemas/NotificationSink/sink"
     And the callback body is compliant with the OAS schema at "/components/callbacks/onCarbonFootprintCalculation" with "x-correlator" having the same value as the request header "x-correlator"
     And the callback carries the information defined in "/components/schemas/CloudEventCarbonFootprint"
     And "/components/schemas/CloudEventCarbonFootprint" in the callback should contain the parameter "$.requestID" with the same value as in the 201 response of "/calculate-carbon-footprint"
     And "/components/schemas/CloudEventCarbonFootprint" in the callback should contain the parameter"$.carbonFootprint"
-    And the parameter"$.carbonFootprint" should be se to the aspected value as sum of the carbon footprint of all the application instances
+    And the parameter"$.carbonFootprint" should be se to the expected value as sum of the carbon footprint of all the application instances
