@@ -7,7 +7,8 @@ Feature: CAMARA Energy Footprint Notification API v0.1.0-rc.1 - Operation calcul
 # * One or more application instances whose carbon footprint can be evaluated.
 #
   Background: Common calculate-carbon-footprint setup
-    Given the path "/calculate-carbon-footprint"
+    Given an environment at "apiRoot"
+    And the path "/energy-footprint-notification/v0.1rc1/calculate-carbon-footprint"
     And the header "Content-Type" is set to "application/json"
     And the header "Authorization" is set to a valid access token
     And the header "x-correlator" complies with the schema at "#/components/schemas/XCorrelator"
