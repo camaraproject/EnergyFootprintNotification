@@ -144,7 +144,8 @@ servers:
     variables:
       apiRoot:
         default: http://localhost:9091
-        description: API root for the Energy Footprint API
+        description: API root, defined by the service provider, e.g.
+         `api.example.com` or `api.example.com/somepath`
 security:
   - notificationsBearerAuth: []
 ############################################################################
