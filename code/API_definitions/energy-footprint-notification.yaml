@@ -4,24 +4,22 @@ openapi: 3.0.3
 #                                     API info                             #
 ############################################################################
 info:
-  title: Energy Footprint Notification
+  title: Energy Footprint
   description: |
     ## Overview
-    The Energy Footprint Notification (EFN) API provides the API Consumer
-    with information about the E2E energy consumption and carbon footprint of a
-    Service exposed by a set of applications instances.
+    The Energy Footprint API provides the API Consumer
+    with information about the energy consumption and carbon footprint of a
+    service exposed by a set of applications instances.
     ## Introduction
-    The scenario foresees a Service provided by many applications instantiated
-    and running in different locations in the Telco Cloud owned by a Telco
-    Operator.The EFN API provides the API Consumer (e.g. the Service Provider)
-    with the information about the overall E2E energy consumption and carbon
-    footprint (greenhouse gasses emissions) of the Service produced by all
+    The scenario foresees a service provided by many applications, the Energy
+    Footprint API provides the API Consumer (e.g. the Service Provider)
+    with the information about the energy consumption and carbon
+    footprint (greenhouse gasses emissions) of the service produced by all
     applications instances hosted by the Telco Operator.
     The reported energy consumption and carbon footprint consider the energy
     used to run the applications instances in the Data Centers and the energy
-    absorbed along the Operator's network to provide the Service for the Telco
+    absorbed along the Operator's network to provide the service for the Telco
     Operator's subscribers.
-    (e.g., RAN and Core Network energy consumption).\
     \
     **Example use case and flow:**\
     \
@@ -29,10 +27,10 @@ info:
     EnergyFootprintNotification/blob/main/documentation/API_documentation/\
     EFN_UserStory_UseCase_1.md)\
     \
-    **The main elements of the EFN API are:**\
+    **The main elements of the Energy Footprint API are:**\
     \
     **TargetRequest:**
-    Provides to the API Producer the information about the target Service (as a
+    Information about the target service (as a
     set of applications) and the period of time of interest.
     It includes the paramenter "service" wich is an array of application
     identifiers. The application identifiers are provided by the CAMARA API
@@ -40,12 +38,12 @@ info:
     \
     **EnergyResponse:**
     Provides to the API Consumer the requested information about the energy
-    consumption for the target Service, considering all the active instances,
+    consumption for the target service, considering all the active instances,
     in the period of time of interest.\
     \
     **CarbonFootprintResponse:**
     Provides to the API Consumer the information about the carbon footprint for
-    the target Service, considering all the active instances, in the period of
+    the target service, considering all the active instances, in the period of
     time of interest.
     # Authorization and authentication
     The "Camara Security and Interoperability Profile" provides details of how
@@ -67,43 +65,43 @@ info:
     principles of transparency and user-centric privacy-by-design.
     ## API Documentation
     ## Details
-    The Energy Footprint Notification (EFN) API provides, to the API Consumer,
-    information about the E2E energy consumption and carbon footprint for a
-    specified Service that is provided by a certain number of active instances
-    of some applications. The API provides information about the E2E aggregated
+    The Energy Footprint API provides, to the API Consumer,
+    information about the energy consumption and carbon footprint for a
+    specified service that is provided by a certain number of active instances
+    of some applications. The API provides information about the aggregated
     energy consumption and carbon footprint considering all the active instances
-    and network involvement, in a specific time period in which the Service is
+    and network involvement, in a specific time period in which the service is
     provided to end users. The application instances that are monitored
     for their energy consumption are the one managed by the Operator and that
-    run on top of the Operator’s infrastructure. The Service is deployed and
+    run on top of the Operator’s infrastructure. The service is deployed and
     managed via the Operator Platform (e.g via the [CAMARA Edge Cloud APIs](htt\
     ps://github.com/camaraproject/EdgeCloud)). Consequently, the Operator
-    Platform is aware of all the active instances supporting the Service and it
+    Platform is aware of all the active instances supporting the service and it
     is also aware of the energy consumption in the Data Centers hosting the
-    applications instances providing the Service. The Operator's Network is
+    applications instances providing the service. The Operator's Network is
     deeply involved in the service provisioning, so its energy consumption is
-    relevant to have and E2E view. The EFN API also considers the energy
+    relevant to have and view. The Energy Footprint API also considers the energy
     consumption and the carbon footprint for the network traffic generated by
-    the Operator's subscribers consuming the Service. The Service Provider
+    the Operator's subscribers consuming the service. The Service Provider
     activates a service using the Operator Platform to instantiate and activate
-    the application supporting the Service in different Edge Data Centers.
+    the application supporting the service in different Edge Data Centers.
     The Service Provider onboards the applications, deploys and activates some
-    instances to enable the Service. Service customers use their devices to
-    access the Service. The use of the service produces an energy
+    instances to enable the service. Service customers use their devices to
+    access the service. The use of the service produces an energy
     consumption alongside the Operator's Network and on the Data Centers hosting
-    the applications instances. The EFN API is used by a Service Provider to be
-    aware of the E2E energy consumption of the Services. The Service Provider,
-    via an EFN API Consumer, invokes the EFN API with the identifiers of the
-    application instances supporting the target Service. A period of
-    time can be specified. The EFN API provides back the energy consumption by
-    the Service in that period of time.  The EFN API also provides back the
-    carbon footprint related to the running of the Service.
-    The EFN API is an intent based API.
+    the applications instances. The Energy Footprint API is used by a Service Provider to be
+    aware of the energy consumption of the service. The Service Provider,
+    via an Energy Footprint API Consumer, invokes the Energy Footprint API with the identifiers of the
+    application instances supporting the target service. A period of
+    time can be specified. The Energy Footprint API provides back the energy consumption by
+    the service in that period of time.  The Energy Footprint API also provides back the
+    carbon footprint related to the running of the service.
+    The Energy Footprint API is an intent based API.
     \
-    The EFN API supports the following Intents:
-    - Intent1: Which is the overall energy consumption for my Service in this
+    The Energy Footprint API supports the following Intents:
+    - Intent1: Which is the overall energy consumption for my service in this
     period of time?
-    - Intent2: Which is the overall carbon footprint for my Service in this
+    - Intent2: Which is the overall carbon footprint for my service in this
     period of time?
 
     The input for the above intents is:
@@ -142,11 +140,11 @@ externalDocs:
 #                                     Servers                              #
 ############################################################################
 servers:
-  - url: "{apiRoot}/energy-footprint-notification/v0.1rc1"
+  - url: "{apiRoot}/energy-footprint/v0.1rc1"
     variables:
       apiRoot:
         default: http://localhost:9091
-        description: API root for the Energy Footprint Notification API
+        description: API root for the Energy Footprint API
 security:
   - notificationsBearerAuth: []
 ############################################################################
@@ -161,7 +159,7 @@ tags:
 #                                     Paths                                #
 ############################################################################
 paths:
-  /overall-energy-consumption:
+  /calculate-energy-consumption:
     post:
       tags:
         - Energy consumption information retrieval
@@ -174,8 +172,7 @@ paths:
         - $ref: '#/components/parameters/x-correlator'
       security:
         - openId:
-            - 'energy-footprint-notification:overall-energy-consumption:write'
-            - 'energy-footprint-notification:overall-energy-consumption:read'
+            - 'energy-footprint:calculate-energy-consumption'
       requestBody:
         description: Defines the application that provides the service and the
          time period under analysis.
@@ -211,7 +208,7 @@ paths:
       callbacks:
         onEnergyConsumption:
           $ref: "#/components/callbacks/onEnergyConsumptionCalculation"
-  /overall-carbon-footprint:
+  /calculate-carbon-footprint:
     post:
       tags:
         - Carbon footprint information retrieval
@@ -224,8 +221,7 @@ paths:
         - $ref: '#/components/parameters/x-correlator'
       security:
         - openId:
-            - 'energy-footprint-notification:overall-carbon-footprint:write'
-            - 'energy-footprint-notification:overall-carbon-footprint:read'
+            - 'energy-footprint:calculate-carbon-footprint'
       requestBody:
         description: Defines the application that provides the service and the
          time period under analysis.
@@ -393,7 +389,7 @@ components:
               enum:
                 - "bearer"
     TargetRequest:
-      description: resource containing the Service under analysis and the
+      description: resource containing the service under analysis and the
         callback information for the API Consumer to be notified with the
         results of the analysis. If no "TimePeriod" is provided the analysis
         is performed from the activation of the first instance of the
@@ -403,7 +399,7 @@ components:
         service:
           type: array
           description: list of Application Instance Identifiers. This are the
-            instances of the applications producing the Service under analysis.
+            instances of the applications producing the service under analysis.
           items:
             $ref: '#/components/schemas/AppInstanceId'
         timePeriod:
@@ -501,7 +497,7 @@ components:
         time:
           $ref: "#/components/schemas/DateTime"
     CloudEventEnergy:
-      description: provides back the energy consumption for the Service. The
+      description: provides back the energy consumption for the service. The
         result of the analysis is a floating point number. The unit of measure
         is Kw/h.
       allOf:
@@ -524,7 +520,7 @@ components:
                 service. The API is asynchronous, for this reason the value will be
                 returned back via a callback
     CloudEventCarbonFootprint:
-      description: provides back the carbon footprint of the Service. The result
+      description: provides back the carbon footprint of the service. The result
        of the analysis is a floating point number. The unit of measure is
        tonnes.
       allOf:
