@@ -22,7 +22,7 @@ info:
     **Example use case and flow:**\
     \
     [**Edge Service energy report**](https://github.com/camaraproject/\
-    EnergyFootprintNotification/blob/main/documentation/API_documentation/\
+    EnergyFootprintNotification/blob/r1.2/documentation/API_documentation/\
     EFN_UserStory_UseCase_1.md)\
     \
     **The main elements of the Energy Footprint API are:**\
@@ -181,7 +181,7 @@ paths:
             schema:
               $ref: '#/components/schemas/ReportCreationRequest'
       responses:
-        '201':
+        "201":
           description: The request has been acquired. The request identifier is
            returned.
           headers:
@@ -286,7 +286,7 @@ components:
   callbacks:
     onEnergyConsumptionCalculation:
       # when data is sent, it will be sent to the callback url provided
-      '{$request.body.notificationSink.sink}':
+      "{$request.body.subscriptionRequest.sink}":
         post:
           summary: Provides back the result of the analysis on the energy
            consumption
@@ -299,26 +299,48 @@ components:
             - notificationsBearerAuth: []
           requestBody:
             description: payload containing the calculated energy consumption
+            required: true
             content:
               application/json:
                 schema:
-                  $ref: '#/components/schemas/CloudEventEnergy'
+                  allOf:
+                    - $ref: '#/components/schemas/CloudEvent'
+                  example:
+                    id: "string"
+                    source: "https://notificationSendServer12.supertelco.com"
+                    type: "org.camaraproject.energy-footprint-notification.v1.energy"
+                    specversion: "1.0"
+                    datacontenttype: "application/json"
+                    data: 
+                      requestId: "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+                      energyConsumption: 12.87
+                    time: "2018-04-05T17:31:00Z"
           responses:
-            '202':
+            "202":
               description: Your server implementation should return this HTTP
                 status code if the data was received successfully
               headers:
                 x-correlator:
                   $ref: '#/components/headers/x-correlator'
-            '204':
+            "204":
               description: Your server should return this HTTP status code if
                no longer interested in further updates
               headers:
                 x-correlator:
                   $ref: '#/components/headers/x-correlator'
+            "400":
+              $ref: "#/components/responses/Generic400"
+            "401":
+              $ref: "#/components/responses/Generic401"
+            "403":
+              $ref: "#/components/responses/Generic403"
+            "410":
+              $ref: "#/components/responses/Generic410"
+            "429":
+              $ref: "#/components/responses/Generic429"
     onCarbonFootprintCalculation:
       # when data is sent, it will be sent to the callback url provided
-      '{$request.body.notificationSink.sink}':
+      '{$request.body.subscriptionRequest.sink}':
         post:
           summary: Provides back the result of the analysis on the carbon
             footprint
@@ -334,60 +356,236 @@ components:
             content:
               application/json:
                 schema:
-                  $ref: '#/components/schemas/CloudEventCarbonFootprint'
+                  $ref: '#/components/schemas/CloudEvent'
+                example:
+                  id: "string"
+                  source: "https://notificationSendServer12.supertelco.com"
+                  type: "org.camaraproject.energy-footprint-notification.v1.carbon-footprint"
+                  specversion: "1.0"
+                  datacontenttype: "application/json"
+                  data: 
+                    requestId: "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+                    carbonFootprint: 45.568
+                  time: "2018-04-05T17:31:00Z"
           responses:
-            '202':
+            "202":
               description: Your server implementation should return this HTTP
                 status code if the data was received successfully
               headers:
                 x-correlator:
                   $ref: '#/components/headers/x-correlator'
-            '204':
+            "204":
               description: Your server should return this HTTP status code if
                no longer interested in further updates
               headers:
                 x-correlator:
                   $ref: '#/components/headers/x-correlator'
+            "400":
+              $ref: "#/components/responses/Generic400"
+            "401":
+              $ref: "#/components/responses/Generic401"
+            "403":
+              $ref: "#/components/responses/Generic403"
+            "410":
+              $ref: "#/components/responses/Generic410"
+            "429":
+              $ref: "#/components/responses/Generic429"
   ############################################################################
   #                                 Resources                                #
   ############################################################################
   schemas:
-    NotificationSink:
-      description: ""
+    SubscriptionRequest:
+      description: The request for creating a event-type event subscription
       type: object
       required:
         - sink
+        - protocol
+        - config
+        - types
       properties:
+        protocol:
+          $ref: "#/components/schemas/Protocol"
         sink:
-          description: 'https callback address where the notification must be
-            POST-ed'
           type: string
           format: uri
-        sinkCredentials:
-          description: Sink credential provides authorization information
-            necessary to enable delivery of events to a target
-          type: object
+          pattern: ^https:\/\/.+$
+          description: The address to which events shall be delivered using the selected protocol.
+          example: "https://endpoint.example.com/sink"
+        sinkCredential:
+          $ref: "#/components/schemas/SinkCredential"
+        types:
+          description: |
+            Camara Event types eligible to be delivered by this subscription.
+            Note: the maximum number of event types per subscription will be decided at API project level
+          type: array
+          minItems: 1
+          maxItems: 1
+          items:
+            $ref: "#/components/schemas/SubscriptionEventType"
+        config:
+          $ref: "#/components/schemas/Config"
+      discriminator:
+        propertyName: protocol
+        mapping:
+          HTTP: "#/components/schemas/HTTPSubscriptionRequest"
+          MQTT3: "#/components/schemas/MQTTSubscriptionRequest"
+          MQTT5: "#/components/schemas/MQTTSubscriptionRequest"
+          AMQP: "#/components/schemas/AMQPSubscriptionRequest"
+          NATS: "#/components/schemas/NATSSubscriptionRequest"
+          KAFKA: "#/components/schemas/ApacheKafkaSubscriptionRequest"
+    Protocol:
+      type: string
+      enum: ["HTTP", "MQTT3", "MQTT5", "AMQP", "NATS", "KAFKA"]
+      description: Identifier of a delivery protocol. Only HTTP is allowed for now
+      example: "HTTP"
+    Config:
+      description: |
+        Implementation-specific configuration parameters needed by the subscription manager for acquiring events.
+        In CAMARA we have predefined attributes like `subscriptionExpireTime`, `subscriptionMaxEvents`, `initialEvent`
+        Specific event type attributes must be defined in `subscriptionDetail`
+        Note: if a request is performed for several event type, all subscribed event will use same `config` parameters.
+      type: object
+      required:
+        - subscriptionDetail
+      properties:
+        subscriptionDetail:
+          $ref: "#/components/schemas/CreateSubscriptionDetail"
+        subscriptionExpireTime:
+          type: string
+          format: date-time
+          example: 2023-01-17T13:18:23.682Z
+          description: The subscription expiration time (in date-time format) requested by the API consumer. It must follow [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) and must have time zone. Up to API project decision to keep it.
+        subscriptionMaxEvents:
+          type: integer
+          description: Identifies the maximum number of event reports to be generated (>=1) requested by the API consumer - Once this number is reached, the subscription ends. Up to API project decision to keep it.
+          minimum: 1
+          example: 5
+        initialEvent:
+          type: boolean
+          description: |
+            Set to `true` by API consumer if consumer wants to get an event as soon as the subscription is created and current situation reflects event request.
+            Example: Consumer request Roaming event. If consumer sets initialEvent to true and device is in roaming situation, an event is triggered
+            Up to API project decision to keep it.
+    SinkCredential:
+      description: A sink credential provides authentication or authorization information necessary to enable delivery of events to a target.
+      type: object
+      example:
+        credentialType: ACCESSTOKEN
+      properties:
+        credentialType:
+          type: string
+          enum:
+            - PLAIN
+            - ACCESSTOKEN
+            - REFRESHTOKEN
+          description: |
+            The type of the credential. 
+            Note: Type of the credential - MUST be set to ACCESSTOKEN for now
+      discriminator:
+        propertyName: credentialType
+        mapping:
+          PLAIN: "#/components/schemas/PlainCredential"
+          ACCESSTOKEN: "#/components/schemas/AccessTokenCredential"
+          REFRESHTOKEN: "#/components/schemas/RefreshTokenCredential"
+      required:
+        - credentialType
+    PlainCredential:
+      type: object
+      description: A plain credential as a combination of an identifier and a secret.
+      allOf:
+        - $ref: "#/components/schemas/SinkCredential"
+        - type: object
+          required:
+            - identifier
+            - secret
           properties:
-            credentialtype:
+            identifier:
+              description: The identifier might be an account or username.
               type: string
-              description: Type of the credential - MUST be set to ACCESSTOKEN
-                for now
-              enum:
-                - "ACCESSTOKEN"
+            secret:
+              description: The secret might be a password or passphrase.
+              type: string
+    AccessTokenCredential:
+      type: object
+      description: An access token credential.
+      allOf:
+        - $ref: "#/components/schemas/SinkCredential"
+        - type: object
+          properties:
             accessToken:
+              description: REQUIRED. An access token is a previously acquired token granting access to the target resource.
               type: string
-              description: Access Token granting access to the POST operation to
-                create notification
-            accessTokenExpireUtc:
+            accessTokenExpiresUtc:
               type: string
               format: date-time
-              description: An absolute UTC instant at which the access token
-                shall be considered expired.
+              description: |
+                REQUIRED. An absolute (UTC) timestamp at which the token shall be considered expired.
+                In the case of an ACCESS_TOKEN_EXPIRED termination reason, implementation should notify the client before the expiration date.
+                If the access token is a JWT and registered "exp" (Expiration Time) claim is present, the two expiry times should match.
+                It must follow [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) and must have time zone.
+              example: "2023-07-03T12:27:08.312Z"
             accessTokenType:
+              description: REQUIRED. Type of the access token (See [OAuth 2.0](https://tools.ietf.org/html/rfc6749#section-7.1)).
               type: string
-              description: Type of access token - MUST be set to bearer for now
               enum:
-                - "bearer"
+                - bearer
+          required:
+            - accessToken
+            - accessTokenExpiresUtc
+            - accessTokenType
+    RefreshTokenCredential:
+      type: object
+      description: An access token credential with a refresh token.
+      allOf:
+        - $ref: "#/components/schemas/SinkCredential"
+        - type: object
+          properties:
+            accessToken:
+              description: REQUIRED. An access token is a previously acquired token granting access to the target resource.
+              type: string
+            accessTokenExpiresUtc:
+              type: string
+              format: date-time
+              description: |
+                REQUIRED. An absolute (UTC) timestamp at which the token shall be considered expired.
+                In the case of an ACCESS_TOKEN_EXPIRED termination reason, implementation should notify the client before the expiration date.
+                If the access token is a JWT and registered "exp" (Expiration Time) claim is present, the two expiry times should match.
+                It must follow [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) and must have time zone.
+              example: "2023-07-03T12:27:08.312Z"
+            accessTokenType:
+              description: REQUIRED. Type of the access token (See [OAuth 2.0](https://tools.ietf.org/html/rfc6749#section-7.1)).
+              type: string
+              enum:
+                - bearer
+            refreshToken:
+              description: REQUIRED. An refresh token credential used to acquire access tokens.
+              type: string
+            refreshTokenEndpoint:
+              type: string
+              format: uri
+              description: REQUIRED. A URL at which the refresh token can be traded for an access token.
+      required:
+        - accessToken
+        - accessTokenExpiresUtc
+        - accessTokenType
+        - refreshToken
+        - refreshTokenEndpoint
+    CreateSubscriptionDetail:
+      description: The detail of the requested event subscription.
+      type: object
+    EventTypeNotification:
+      type: string
+      description: Event triggered when an event-type event occurred.
+      enum:
+        - org.camaraproject.energy-footprint-notification.v1.energy
+        - org.camaraproject.energy-footprint-notification.v1.carbon-footprint
+    SubscriptionEventType:
+      type: string
+      description: |
+        event-type that could be subscribed through this subscription. Several event-type could be defined.
+      enum:
+        - org.camaraproject.energy-footprint-notification.v1.energy
+        - org.camaraproject.energy-footprint-notification.v1.carbon-footprint
     ReportCreationRequest:
       description: resource containing the service under analysis and the
         callback information for the API Consumer to be notified with the
@@ -404,8 +602,8 @@ components:
             $ref: '#/components/schemas/AppInstanceId'
         timePeriod:
           $ref: "#/components/schemas/TimePeriod"
-        notificationSink:
-          $ref: '#/components/schemas/NotificationSink'
+        subscriptionRequest:
+          $ref: '#/components/schemas/SubscriptionRequest'
         requestId:
           type: string
           description: Identifier for the request. This
@@ -413,7 +611,7 @@ components:
           readOnly: true
       required:
         - service
-        - notificationSink
+        - subscriptionRequest
     AppInstanceId:
       type: string
       format: uuid
@@ -475,10 +673,7 @@ components:
         source:
           $ref: '#/components/schemas/Source'
         type:
-          type: string
-          description: 'type of event as defined in each CAMARA API'
-          example: 'org.camaraproject.iot.dta-status-changed-event'
-          minLength: 25
+          $ref: "#/components/schemas/EventTypeNotification"
         specversion:
           type: string
           description: Version of the specification to which this event conforms
@@ -497,6 +692,11 @@ components:
             referenced by its type
         time:
           $ref: "#/components/schemas/DateTime"
+      discriminator:
+        propertyName: "type"
+        mapping:
+          org.camaraproject.energy-footprint-notification.v1.energy: "#/components/schemas/CloudEventEnergy"
+          org.camaraproject.energy-footprint-notification.v1.carbon-footprint: "#/components/schemas/CloudEventCarbonFootprint"
     CloudEventEnergy:
       description: provides back the energy consumption for the service. The
         result of the analysis is a floating point number. The unit of measure
@@ -688,6 +888,63 @@ components:
                 status: 404
                 code: UNKNOWN_APPLICATION_IDENTIFIER
                 message: the target application is unknown.
+    Generic409:
+      description: Conflict
+      headers:
+        x-correlator:
+          $ref: "#/components/headers/x-correlator"
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/ErrorInfo"
+              - type: object
+                properties:
+                  status:
+                    enum:
+                      - 409
+                  code:
+                    enum:
+                      - ABORTED
+                      - ALREADY_EXISTS
+          examples:
+            GENERIC_409_ABORTED:
+              description: Concurreny of processes of the same nature/scope
+              value:
+                status: 409
+                code: ABORTED
+                message: Concurrency conflict.
+            GENERIC_409_ALREADY_EXISTS:
+              description: Trying to create an existing resource
+              value:
+                status: 409
+                code: ALREADY_EXISTS
+                message: The resource that a client tried to create already exists.
+    Generic410:
+      description: Gone
+      headers:
+        x-correlator:
+          $ref: "#/components/headers/x-correlator"
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/ErrorInfo"
+              - type: object
+                properties:
+                  status:
+                    enum:
+                      - 410
+                  code:
+                    enum:
+                      - GONE
+          examples:
+            GENERIC_410_GONE:
+              description: Use in notifications flow to allow API Consumer to indicate that its callback is no longer available
+              value:
+                status: 410
+                code: GONE
+                message: Access to the target resource is no longer available.
     Generic422:
       description: Unprocessable Content
       headers:
