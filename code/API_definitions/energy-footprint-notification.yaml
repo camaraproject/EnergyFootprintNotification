@@ -166,7 +166,7 @@ paths:
         Application instances in a certain period of time.
       description: Receives as input an object containing the intents from the
        API Consumer and provides back the energy consumption with a callback.
-      operationId: retrieveOverallEnergyConsumption
+      operationId: calculatEnergyConsumption
       parameters:
         - $ref: '#/components/parameters/x-correlator'
       security:
@@ -215,7 +215,7 @@ paths:
         instances in a certain period of time.
       description: Receives as input an object containing the intents from the
        API Consumer and provides back the carbon footprint with a callback.
-      operationId: retrieveOverallCarbonFootprint
+      operationId: calculateCarbonFootprint
       parameters:
         - $ref: '#/components/parameters/x-correlator'
       security:
