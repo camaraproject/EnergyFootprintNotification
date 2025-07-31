@@ -28,7 +28,7 @@ info:
     **ReportCreationRequest:**
     Information about the target service (as a
     set of applications) and the period of time of interest.
-    It includes the paramenter "service" wich is an array of application
+    It includes the parameter "service" which is an array of application
     identifiers. The application identifiers are provided by the CAMARA API
     used to deploy the applications (e.g. the Edge Application Management API).
 
@@ -106,12 +106,12 @@ info:
 
     The output for the above intents is:
     - Output_Intent1: energy consumption in Kw/h.
-    - Output_Intent2: greenhouse gasses emission in tonnes.
+    - Output_Intent2: greenhouse gases emission in tonnes.
 
     The related endpoints are:
     - Intent1: /overall-energy-consumption
     - Intent2: /overall-carbon-footprint
-    ## Additional CAMARA error responses
+    # Additional CAMARA error responses
     The list of error codes in this API specification is not exhaustive.
     Therefore the API specification may not document some non-mandatory error
     statuses as indicated in `CAMARA API Design Guide`.
