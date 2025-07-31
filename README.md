@@ -27,7 +27,7 @@ Note: Please be aware that the project will have frequent updates to the main br
 
 * **NEW**: Pre-release [r1.2](https://github.com/camaraproject/EnergyFootprintNotification/releases/tag/r1.2) with energy-footprint-notification v0.1.0-rc.1 is available.
 
-For changes see [CHANGELOG.md](https://github.com/camaraproject/TrafficInfluence/blob/main/CHANGELOG.md)
+For changes see [CHANGELOG.md](https://github.com/camaraproject/EnergyFootprintNotification/blob/main/CHANGELOG.md)
 
 ## Contributing
 * Meetings are held virtually <!-- for new, independent Sandbox API repositories request a meeting link from the LF admin team or replace the information with the existing meeting information of the Sub Project -->
