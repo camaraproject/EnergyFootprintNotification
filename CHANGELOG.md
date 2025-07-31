@@ -40,6 +40,7 @@ This is the first release candidate of the CAMARA EnergyFootprintNotification AP
 
 * Renamed operations: https://github.com/camaraproject/EnergyFootprintNotification/pull/83 
 * Changed OAuth2 with OpenId: https://github.com/camaraproject/EnergyFootprintNotification/pull/83
+* Updated the name of the test file to be coherent with the operationId: https://github.com/camaraproject/EnergyFootprintNotification/pull/83
 
 ### Fixed
 
