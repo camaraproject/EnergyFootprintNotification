@@ -4,62 +4,56 @@ openapi: 3.0.3
 #                                     API info                             #
 ############################################################################
 info:
-  title: Energy Footprint Notification
+  title: Energy Footprint
   description: |
     ## Overview
-    The Energy Footprint Notification (EFN) API provides the API Consumer
-    with information about the E2E energy consumption and carbon footprint of a
-    Service exposed by a set of applications instances.
+    The Energy Footprint API provides the API Consumer
+    with information about the energy consumption and carbon footprint of a
+    service exposed by a set of applications instances.
     ## Introduction
-    The scenario foresees a Service provided by many applications instantiated
-    and running in different locations in the Telco Cloud owned by a Telco
-    Operator.The EFN API provides the API Consumer (e.g. the Service Provider)
-    with the information about the overall E2E energy consumption and carbon
-    footprint (greenhouse gasses emissions) of the Service produced by all
-    applications instances hosted by the Telco Operator.
-    The reported energy consumption and carbon footprint consider the energy
-    used to run the applications instances in the Data Centers and the energy
-    absorbed along the Operator's network to provide the Service for the Telco
-    Operator's subscribers.
-    (e.g., RAN and Core Network energy consumption).\
-    \
-    **Example use case and flow:**\
-    \
-    [**Edge Service**](https://github.com/camaraproject/\
-    EnergyFootprintNotification/blob/main/documentation/API_documentation/\
-    EFN_UserStory_UseCase_1.md)\
-    \
-    **The main elements of the EFN API are:**\
-    \
-    **TargetRequest:**
-    Provides to the API Producer the information about the target Service (as a
+    The scenario foresees a service provided by many applications, the Energy
+    Footprint API provides the API Consumer (e.g. the Service Provider)
+    with the information about the energy consumption and carbon
+    footprint (greenhouse gasses emissions) of the service produced by the
+    active applications instances hosted by the Telco Operator.
+    Note: This API is expected to be used in conjunction with, for example,
+    the CAMARA Edge Cloud APIs.
+
+    **Example use case and flow:**
+
+    [**Edge Service energy report**](https://github.com/camaraproject/EnergyFootprintNotification/blob/r1.2/documentation/API_documentation/EFN_UserStory_UseCase_1.md)
+
+    **The main elements of the Energy Footprint API are:**
+
+    **ReportCreationRequest:**
+    Information about the target service (as a
     set of applications) and the period of time of interest.
-    It includes the paramenter "service" wich is an array of application
+    It includes the parameter "service" which is an array of application
     identifiers. The application identifiers are provided by the CAMARA API
-    used to deploy the applications (e.g. the Edge Application Management API).\
-    \
+    used to deploy the applications (e.g. the Edge Application Management API).
+
     **EnergyResponse:**
     Provides to the API Consumer the requested information about the energy
-    consumption for the target Service, considering all the active instances,
-    in the period of time of interest.\
-    \
+    consumption for the target service, considering all the active instances,
+    in the period of time of interest.
+
     **CarbonFootprintResponse:**
     Provides to the API Consumer the information about the carbon footprint for
-    the target Service, considering all the active instances, in the period of
+    the target service, considering all the active instances, in the period of
     time of interest.
     # Authorization and authentication
-    The "Camara Security and Interoperability Profile" provides details on how
-    an API consumer requests an access token. Please refer to Identify and
+    The "Camara Security and Interoperability Profile" provides details of how
+    an API consumer requests an access token. Please refer to Identity and
     Consent Management
     (https://github.com/camaraproject/IdentityAndConsentManagement/)
-    for the released version of the profile.\
-    \
+    for the released version of the profile.
+
     The specific authorization flows to be used will be agreed upon during the
     onboarding process, happening between the API consumer and the API
     provider, taking into account the declared purpose for accessing the API,
     whilst also being subject to the prevailing legal framework dictated by
-    local legislation.\
-    \
+    local legislation.
+
     In cases where personal data is processed by the API and users can
     exercise their rights through mechanisms such as opt-in and/or opt-out,
     the use of three-legged access tokens is mandatory. This ensures that
@@ -67,43 +61,43 @@ info:
     principles of transparency and user-centric privacy-by-design.
     ## API Documentation
     ## Details
-    The Energy Footprint Notification (EFN) API provides, to the API Consumer,
-    information about the E2E energy consumption and carbon footprint for a
-    specified Service that is provided by a certain number of active instances
-    of some applications. The API provides information about the E2E aggregated
+    The Energy Footprint API provides, to the API Consumer,
+    information about the energy consumption and carbon footprint for a
+    specified service that is provided by a certain number of active instances
+    of some applications. The API provides information about the aggregated
     energy consumption and carbon footprint considering all the active instances
-    and network involvement, in a specific time period in which the Service is
+    and network involvement, in a specific time period in which the service is
     provided to end users. The application instances that are monitored
     for their energy consumption are the one managed by the Operator and that
-    run on top of the Operator’s infrastructure. The Service is deployed and
+    run on top of the Operator’s infrastructure. The service is deployed and
     managed via the Operator Platform (e.g via the [CAMARA Edge Cloud APIs](htt\
     ps://github.com/camaraproject/EdgeCloud)). Consequently, the Operator
-    Platform is aware of all the active instances supporting the Service and it
+    Platform is aware of all the active instances supporting the service and it
     is also aware of the energy consumption in the Data Centers hosting the
-    applications instances providing the Service. The Operator's Network is
+    applications instances providing the service. The Operator's Network is
     deeply involved in the service provisioning, so its energy consumption is
-    relevant to have and E2E view. The EFN API also considers the energy
+    relevant to have and view. The Energy Footprint API also considers the energy
     consumption and the carbon footprint for the network traffic generated by
-    the Operator's subscribers consuming the Service. The Service Provider
+    the Operator's subscribers consuming the service. The Service Provider
     activates a service using the Operator Platform to instantiate and activate
-    the application supporting the Service in different Edge Data Centers.
+    the application supporting the service in different Edge Data Centers.
     The Service Provider onboards the applications, deploys and activates some
-    instances to enable the Service. Service customers use their devices to
-    access the Service. The use of the service produces an energy
+    instances to enable the service. Service customers use their devices to
+    access the service. The use of the service produces an energy
     consumption alongside the Operator's Network and on the Data Centers hosting
-    the applications instances. The EFN API is used by a Service Provider to be
-    aware of the E2E energy consumption of the Services. The Service Provider,
-    via an EFN API Consumer, invokes the EFN API with the identifiers of the
-    application instances supporting the target Service. A period of
-    time can be specified. The EFN API provides back the energy consumption by
-    the Service in that period of time.  The EFN API also provides back the
-    carbon footprint related to the running of the Service.
-    The EFN API is an intent based API.
-    \
-    The EFN API supports the following Intents:
-    - Intent1: Which is the overall energy consumption for my Service in this
+    the applications instances. The Energy Footprint API is used by a Service Provider to be
+    aware of the energy consumption of the service. The Service Provider,
+    via an Energy Footprint API Consumer, invokes the Energy Footprint API with the identifiers of the
+    application instances supporting the target service. A period of
+    time can be specified. The Energy Footprint API provides back the energy consumption by
+    the service in that period of time.  The Energy Footprint API also provides back the
+    carbon footprint related to the running of the service.
+    The Energy Footprint API is an intent based API.
+
+    The Energy Footprint API supports the following Intents:
+    - Intent1: Which is the overall energy consumption for my service in this
     period of time?
-    - Intent2: Which is the overall carbon footprint for my Service in this
+    - Intent2: Which is the overall carbon footprint for my service in this
     period of time?
 
     The input for the above intents is:
@@ -112,42 +106,42 @@ info:
 
     The output for the above intents is:
     - Output_Intent1: energy consumption in Kw/h.
-    - Output_Intent2: greenhouse gasses emission in tonnes.
+    - Output_Intent2: greenhouse gases emission in tonnes.
 
     The related endpoints are:
     - Intent1: /overall-energy-consumption
     - Intent2: /overall-carbon-footprint
-    ## Additional CAMARA error responses
+    # Additional CAMARA error responses
     The list of error codes in this API specification is not exhaustive.
     Therefore the API specification may not document some non-mandatory error
-    statuses as indicated in `CAMARA API Design Guidelines`.
+    statuses as indicated in `CAMARA API Design Guide`.
 
-    Please refer to [CAMARA_common.yaml]({link_to_release}/CAMARA_common.yaml)
-    for a complete list of error responses.
+    Please refer to the `CAMARA_common.yaml` of the Commonalities Release
+    associated to this API version for a complete list of error responses.
+    The applicable Commonalities Release can be identified in the
+    `API Readiness Checklist` document associated to this API version.
 
     As a specific rule, error `501 - NOT_IMPLEMENTED` can be only a possible
     error response if it is explicitly documented in the API.
-    ## FAQ's
-    (FAQs will be added in a later version of the documentation)
-    ## Release Notes
-    First draft for the EFN API.
-  version: wip
+
+  version: 0.1.0-rc.1
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  x-camara-commonalities: 0.5
+  x-camara-commonalities: 0.6
 externalDocs:
-  description: Product documentation at Camara
-  url: https://github.com/camaraproject/TBD
+  description: Product documentation at CAMARA
+  url: https://github.com/camaraproject/EnergyFootprintNotification
 ############################################################################
 #                                     Servers                              #
 ############################################################################
 servers:
-  - url: "{apiRoot}/energy-footprint-notification/vwip"
+  - url: "{apiRoot}/energy-footprint/v0.1rc1"
     variables:
       apiRoot:
         default: http://localhost:9091
-        description: API root for the Energy Footprint Notification API
+        description: API root, defined by the service provider, e.g.
+         `api.example.com` or `api.example.com/somepath`
 security:
   - notificationsBearerAuth: []
 ############################################################################
@@ -162,7 +156,7 @@ tags:
 #                                     Paths                                #
 ############################################################################
 paths:
-  /overall-energy-consumption:
+  /calculate-energy-consumption:
     post:
       tags:
         - Energy consumption information retrieval
@@ -170,13 +164,12 @@ paths:
         Application instances in a certain period of time.
       description: Receives as input an object containing the intents from the
        API Consumer and provides back the energy consumption with a callback.
-      operationId: retrieveOverallEnergyConsumption
+      operationId: calculatEnergyConsumption
       parameters:
         - $ref: '#/components/parameters/x-correlator'
       security:
-        - oAuth2:
-            - 'energy-footprint-notification:overall-energy-consumption:write'
-            - 'energy-footprint-notification:overall-energy-consumption:read'
+        - openId:
+            - 'energy-footprint:calculate-energy-consumption'
       requestBody:
         description: Defines the application that provides the service and the
          time period under analysis.
@@ -184,9 +177,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TargetRequest'
+              $ref: '#/components/schemas/ReportCreationRequest'
       responses:
-        '201':
+        "201":
           description: The request has been acquired. The request identifier is
            returned.
           headers:
@@ -200,7 +193,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TargetRequest'
+                $ref: '#/components/schemas/ReportCreationRequest'
         "400":
           $ref: "#/components/responses/Generic400"
         "401":
@@ -212,7 +205,7 @@ paths:
       callbacks:
         onEnergyConsumption:
           $ref: "#/components/callbacks/onEnergyConsumptionCalculation"
-  /overall-carbon-footprint:
+  /calculate-carbon-footprint:
     post:
       tags:
         - Carbon footprint information retrieval
@@ -220,13 +213,12 @@ paths:
         instances in a certain period of time.
       description: Receives as input an object containing the intents from the
        API Consumer and provides back the carbon footprint with a callback.
-      operationId: retrieveOverallCarbonFootprint
+      operationId: calculateCarbonFootprint
       parameters:
         - $ref: '#/components/parameters/x-correlator'
       security:
-        - oAuth2:
-            - 'energy-footprint-notification:overall-carbon-footprint:write'
-            - 'energy-footprint-notification:overall-carbon-footprint:read'
+        - openId:
+            - 'energy-footprint:calculate-carbon-footprint'
       requestBody:
         description: Defines the application that provides the service and the
          time period under analysis.
@@ -234,7 +226,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TargetRequest'
+              $ref: '#/components/schemas/ReportCreationRequest'
       responses:
         '201':
           description: The request has been acquired. The request identifier is
@@ -250,7 +242,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TargetRequest'
+                $ref: '#/components/schemas/ReportCreationRequest'
         "400":
           $ref: "#/components/responses/Generic400"
         "401":
@@ -267,22 +259,9 @@ paths:
 ############################################################################
 components:
   securitySchemes:
-    oAuth2:
-      type: oauth2
-      description: This API uses OAuth 2
-        [More info](https://api.example.com/docs/auth)
-      flows:
-        clientCredentials:
-          tokenUrl: 'https://example.com/oauth/token'
-          scopes:
-            'energy-footprint-notification:overall-energy-consumption:read':
-              Grants access to read-only data in the Energy resources
-            'energy-footprint-notification:overall-energy-consumption:write':
-              Grants write access to the Energy resources
-            'energy-footprint-notification:overall-carbon-footprint:read':
-              Grants access to read-only data in the Carbon Footprint resources
-            'energy-footprint-notification:overall-carbon-footprint:write':
-              Grants access to read-only data in the Carbon Footprint resources
+    openId:
+      type: openIdConnect
+      openIdConnectUrl: https://example.com/.well-known/openid-configuration
     notificationsBearerAuth:
       type: http
       scheme: bearer
@@ -305,7 +284,7 @@ components:
   callbacks:
     onEnergyConsumptionCalculation:
       # when data is sent, it will be sent to the callback url provided
-      '{$request.body.notificationSink.sink}':
+      "{$request.body.subscriptionRequest.sink}":
         post:
           summary: Provides back the result of the analysis on the energy
            consumption
@@ -318,26 +297,48 @@ components:
             - notificationsBearerAuth: []
           requestBody:
             description: payload containing the calculated energy consumption
+            required: true
             content:
               application/json:
                 schema:
-                  $ref: '#/components/schemas/CloudEventEnergy'
+                  allOf:
+                    - $ref: '#/components/schemas/CloudEvent'
+                  example:
+                    id: "string"
+                    source: "https://notificationSendServer12.supertelco.com"
+                    type: "org.camaraproject.energy-footprint-notification.v1.energy"
+                    specversion: "1.0"
+                    datacontenttype: "application/json"
+                    data:
+                      requestId: "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+                      energyConsumption: 12.87
+                    time: "2018-04-05T17:31:00Z"
           responses:
-            '202':
+            "202":
               description: Your server implementation should return this HTTP
                 status code if the data was received successfully
               headers:
                 x-correlator:
                   $ref: '#/components/headers/x-correlator'
-            '204':
+            "204":
               description: Your server should return this HTTP status code if
                no longer interested in further updates
               headers:
                 x-correlator:
                   $ref: '#/components/headers/x-correlator'
+            "400":
+              $ref: "#/components/responses/Generic400"
+            "401":
+              $ref: "#/components/responses/Generic401"
+            "403":
+              $ref: "#/components/responses/Generic403"
+            "410":
+              $ref: "#/components/responses/Generic410"
+            "429":
+              $ref: "#/components/responses/Generic429"
     onCarbonFootprintCalculation:
       # when data is sent, it will be sent to the callback url provided
-      '{$request.body.notificationSink.sink}':
+      '{$request.body.subscriptionRequest.sink}':
         post:
           summary: Provides back the result of the analysis on the carbon
             footprint
@@ -353,63 +354,240 @@ components:
             content:
               application/json:
                 schema:
-                  $ref: '#/components/schemas/CloudEventCarbonFootprint'
+                  $ref: '#/components/schemas/CloudEvent'
+                example:
+                  id: "string"
+                  source: "https://notificationSendServer12.supertelco.com"
+                  type: "org.camaraproject.energy-footprint-notification.v1.carbon-footprint"
+                  specversion: "1.0"
+                  datacontenttype: "application/json"
+                  data:
+                    requestId: "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+                    carbonFootprint: 45.568
+                  time: "2018-04-05T17:31:00Z"
           responses:
-            '202':
+            "202":
               description: Your server implementation should return this HTTP
                 status code if the data was received successfully
               headers:
                 x-correlator:
                   $ref: '#/components/headers/x-correlator'
-            '204':
+            "204":
               description: Your server should return this HTTP status code if
                no longer interested in further updates
               headers:
                 x-correlator:
                   $ref: '#/components/headers/x-correlator'
+            "400":
+              $ref: "#/components/responses/Generic400"
+            "401":
+              $ref: "#/components/responses/Generic401"
+            "403":
+              $ref: "#/components/responses/Generic403"
+            "410":
+              $ref: "#/components/responses/Generic410"
+            "429":
+              $ref: "#/components/responses/Generic429"
   ############################################################################
   #                                 Resources                                #
   ############################################################################
   schemas:
-    NotificationSink:
-      description: ""
+    SubscriptionRequest:
+      description: The request for creating a event-type event subscription
       type: object
       required:
         - sink
+        - protocol
+        - config
+        - types
       properties:
+        protocol:
+          $ref: "#/components/schemas/Protocol"
         sink:
-          description: 'https callback address where the notification must be
-            POST-ed'
           type: string
-        sinkCredentials:
-          description: Sink credential provides authorization information
-            necessary to enable delivery of events to a target
-          type: object
+          format: uri
+          pattern: ^https:\/\/.+$
+          description: The address to which events shall be delivered using the selected protocol.
+          example: "https://endpoint.example.com/sink"
+        sinkCredential:
+          $ref: "#/components/schemas/SinkCredential"
+        types:
+          description: |
+            Camara Event types eligible to be delivered by this subscription.
+            Note: the maximum number of event types per subscription will be decided at API project level
+          type: array
+          minItems: 1
+          maxItems: 1
+          items:
+            $ref: "#/components/schemas/SubscriptionEventType"
+        config:
+          $ref: "#/components/schemas/Config"
+      discriminator:
+        propertyName: protocol
+        mapping:
+          HTTP: "#/components/schemas/HTTPSubscriptionRequest"
+          MQTT3: "#/components/schemas/MQTTSubscriptionRequest"
+          MQTT5: "#/components/schemas/MQTTSubscriptionRequest"
+          AMQP: "#/components/schemas/AMQPSubscriptionRequest"
+          NATS: "#/components/schemas/NATSSubscriptionRequest"
+          KAFKA: "#/components/schemas/ApacheKafkaSubscriptionRequest"
+    Protocol:
+      type: string
+      enum: ["HTTP", "MQTT3", "MQTT5", "AMQP", "NATS", "KAFKA"]
+      description: Identifier of a delivery protocol. Only HTTP is allowed for now
+      example: "HTTP"
+    Config:
+      description: |
+        Implementation-specific configuration parameters needed by the subscription manager for acquiring events.
+        In CAMARA we have predefined attributes like `subscriptionExpireTime`, `subscriptionMaxEvents`, `initialEvent`
+        Specific event type attributes must be defined in `subscriptionDetail`
+        Note: if a request is performed for several event type, all subscribed event will use same `config` parameters.
+      type: object
+      required:
+        - subscriptionDetail
+      properties:
+        subscriptionDetail:
+          $ref: "#/components/schemas/CreateSubscriptionDetail"
+        subscriptionExpireTime:
+          type: string
+          format: date-time
+          example: 2023-01-17T13:18:23.682Z
+          description: The subscription expiration time (in date-time format) requested by the API consumer. It must follow [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) and must have time zone. Up to API project decision to keep it.
+        subscriptionMaxEvents:
+          type: integer
+          description: Identifies the maximum number of event reports to be generated (>=1) requested by the API consumer - Once this number is reached, the subscription ends. Up to API project decision to keep it.
+          minimum: 1
+          example: 5
+        initialEvent:
+          type: boolean
+          description: |
+            Set to `true` by API consumer if consumer wants to get an event as soon as the subscription is created and current situation reflects event request.
+            Example: Consumer request Roaming event. If consumer sets initialEvent to true and device is in roaming situation, an event is triggered
+            Up to API project decision to keep it.
+    SinkCredential:
+      description: A sink credential provides authentication or authorization information necessary to enable delivery of events to a target.
+      type: object
+      example:
+        credentialType: ACCESSTOKEN
+      properties:
+        credentialType:
+          type: string
+          enum:
+            - PLAIN
+            - ACCESSTOKEN
+            - REFRESHTOKEN
+          description: |
+            The type of the credential.
+            Note: Type of the credential - MUST be set to ACCESSTOKEN for now
+      discriminator:
+        propertyName: credentialType
+        mapping:
+          PLAIN: "#/components/schemas/PlainCredential"
+          ACCESSTOKEN: "#/components/schemas/AccessTokenCredential"
+          REFRESHTOKEN: "#/components/schemas/RefreshTokenCredential"
+      required:
+        - credentialType
+    PlainCredential:
+      type: object
+      description: A plain credential as a combination of an identifier and a secret.
+      allOf:
+        - $ref: "#/components/schemas/SinkCredential"
+        - type: object
+          required:
+            - identifier
+            - secret
           properties:
-            credentialtype:
+            identifier:
+              description: The identifier might be an account or username.
               type: string
-              description: Type of the credential - MUST be set to ACCESSTOKEN
-                for now
-              enum:
-                - "ACCESSTOKEN"
+            secret:
+              description: The secret might be a password or passphrase.
+              type: string
+    AccessTokenCredential:
+      type: object
+      description: An access token credential.
+      allOf:
+        - $ref: "#/components/schemas/SinkCredential"
+        - type: object
+          properties:
             accessToken:
+              description: REQUIRED. An access token is a previously acquired token granting access to the target resource.
               type: string
-              description: Access Token granting access to the POST operation to
-                create notification
-            accessTokenExpireUtc:
+            accessTokenExpiresUtc:
               type: string
               format: date-time
-              description: An absolute UTC instant at which the access token
-                shall be considered expired.
+              description: |
+                REQUIRED. An absolute (UTC) timestamp at which the token shall be considered expired.
+                In the case of an ACCESS_TOKEN_EXPIRED termination reason, implementation should notify the client before the expiration date.
+                If the access token is a JWT and registered "exp" (Expiration Time) claim is present, the two expiry times should match.
+                It must follow [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) and must have time zone.
+              example: "2023-07-03T12:27:08.312Z"
             accessTokenType:
+              description: REQUIRED. Type of the access token (See [OAuth 2.0](https://tools.ietf.org/html/rfc6749#section-7.1)).
               type: string
-              description: Type of access token - MUST be set to bearer for now
               enum:
-                - "bearer"
-    TargetRequest:
-      description: resource containing the Service under analysis and the
+                - bearer
+          required:
+            - accessToken
+            - accessTokenExpiresUtc
+            - accessTokenType
+    RefreshTokenCredential:
+      type: object
+      description: An access token credential with a refresh token.
+      allOf:
+        - $ref: "#/components/schemas/SinkCredential"
+        - type: object
+          properties:
+            accessToken:
+              description: REQUIRED. An access token is a previously acquired token granting access to the target resource.
+              type: string
+            accessTokenExpiresUtc:
+              type: string
+              format: date-time
+              description: |
+                REQUIRED. An absolute (UTC) timestamp at which the token shall be considered expired.
+                In the case of an ACCESS_TOKEN_EXPIRED termination reason, implementation should notify the client before the expiration date.
+                If the access token is a JWT and registered "exp" (Expiration Time) claim is present, the two expiry times should match.
+                It must follow [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) and must have time zone.
+              example: "2023-07-03T12:27:08.312Z"
+            accessTokenType:
+              description: REQUIRED. Type of the access token (See [OAuth 2.0](https://tools.ietf.org/html/rfc6749#section-7.1)).
+              type: string
+              enum:
+                - bearer
+            refreshToken:
+              description: REQUIRED. An refresh token credential used to acquire access tokens.
+              type: string
+            refreshTokenEndpoint:
+              type: string
+              format: uri
+              description: REQUIRED. A URL at which the refresh token can be traded for an access token.
+      required:
+        - accessToken
+        - accessTokenExpiresUtc
+        - accessTokenType
+        - refreshToken
+        - refreshTokenEndpoint
+    CreateSubscriptionDetail:
+      description: The detail of the requested event subscription.
+      type: object
+    EventTypeNotification:
+      type: string
+      description: Event triggered when an event-type event occurred.
+      enum:
+        - org.camaraproject.energy-footprint-notification.v1.energy
+        - org.camaraproject.energy-footprint-notification.v1.carbon-footprint
+    SubscriptionEventType:
+      type: string
+      description: |
+        event-type that could be subscribed through this subscription. Several event-type could be defined.
+      enum:
+        - org.camaraproject.energy-footprint-notification.v1.energy
+        - org.camaraproject.energy-footprint-notification.v1.carbon-footprint
+    ReportCreationRequest:
+      description: resource containing the service under analysis and the
         callback information for the API Consumer to be notified with the
-        results of the analysis. If no "TimePeriod" is provided the analysis
+        results of the analysis. If no "timePeriod" is provided the analysis
         is performed from the activation of the first instance of the
         Application.
       type: object
@@ -417,32 +595,21 @@ components:
         service:
           type: array
           description: list of Application Instance Identifiers. This are the
-            instances of the applications producing the Service under analysis.
+            instances of the applications producing the service under analysis.
           items:
             $ref: '#/components/schemas/AppInstanceId'
         timePeriod:
-          properties:
-            startDate:
-              type: string
-              format: date-time
-              description: An instant of time, starting of the TimePeriod.
-            endDate:
-              type: string
-              format: date-time
-              description: An instant of time, ending of the TimePeriod.
-                If not included, then the period has no ending date.
-          required:
-            - startDate
-        notificationSink:
-          $ref: '#/components/schemas/NotificationSink'
-        requestID:
+          $ref: "#/components/schemas/TimePeriod"
+        subscriptionRequest:
+          $ref: '#/components/schemas/SubscriptionRequest'
+        requestId:
           type: string
           description: Identifier for the request. This
            parameter is returned by the API and must be used to update it.
           readOnly: true
       required:
         - service
-        - notificationSink
+        - subscriptionRequest
     AppInstanceId:
       type: string
       format: uuid
@@ -475,6 +642,18 @@ components:
           * /cloudevents/spec/pull/123
           * 1-555-123-4567
       example: "https://notificationSendServer12.supertelco.com"
+    TimePeriod:
+      properties:
+        startDate:
+          type: string
+          format: date-time
+          description: An instant of time, starting of the TimePeriod.
+        endDate:
+          type: string
+          format: date-time
+          description: An instant of time, ending of the TimePeriod. If not included, then the period has no ending date.
+      required:
+        - startDate
     CloudEvent:
       description: The notification callback
       required:
@@ -492,10 +671,7 @@ components:
         source:
           $ref: '#/components/schemas/Source'
         type:
-          type: string
-          description: 'type of event as defined in each CAMARA API'
-          example: 'org.camaraproject.iot.dta-status-changed-event'
-          minLength: 25
+          $ref: "#/components/schemas/EventTypeNotification"
         specversion:
           type: string
           description: Version of the specification to which this event conforms
@@ -514,8 +690,13 @@ components:
             referenced by its type
         time:
           $ref: "#/components/schemas/DateTime"
+      discriminator:
+        propertyName: "type"
+        mapping:
+          org.camaraproject.energy-footprint-notification.v1.energy: "#/components/schemas/CloudEventEnergy"
+          org.camaraproject.energy-footprint-notification.v1.carbon-footprint: "#/components/schemas/CloudEventCarbonFootprint"
     CloudEventEnergy:
-      description: provides back the energy consumption for the Service. The
+      description: provides back the energy consumption for the service. The
         result of the analysis is a floating point number. The unit of measure
         is Kw/h.
       allOf:
@@ -525,7 +706,7 @@ components:
           type: object
           description: Event details payload
           properties:
-            requestID:
+            requestId:
               type: string
               description: Identifier for the request. This
                parameter correlates this response with the request.
@@ -538,7 +719,7 @@ components:
                 service. The API is asynchronous, for this reason the value will be
                 returned back via a callback
     CloudEventCarbonFootprint:
-      description: provides back the carbon footprint of the Service. The result
+      description: provides back the carbon footprint of the service. The result
        of the analysis is a floating point number. The unit of measure is
        tonnes.
       allOf:
@@ -666,7 +847,7 @@ components:
                       - PERMISSION_DENIED
           examples:
             GENERIC_403_PERMISSION_DENIED:
-              description: Permission denied. OAuth2 token access does not have
+              description: Permission denied. Access token does not have
                 the required scope or when the user fails operational security
               value:
                 status: 403
@@ -705,6 +886,63 @@ components:
                 status: 404
                 code: UNKNOWN_APPLICATION_IDENTIFIER
                 message: the target application is unknown.
+    Generic409:
+      description: Conflict
+      headers:
+        x-correlator:
+          $ref: "#/components/headers/x-correlator"
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/ErrorInfo"
+              - type: object
+                properties:
+                  status:
+                    enum:
+                      - 409
+                  code:
+                    enum:
+                      - ABORTED
+                      - ALREADY_EXISTS
+          examples:
+            GENERIC_409_ABORTED:
+              description: Concurreny of processes of the same nature/scope
+              value:
+                status: 409
+                code: ABORTED
+                message: Concurrency conflict.
+            GENERIC_409_ALREADY_EXISTS:
+              description: Trying to create an existing resource
+              value:
+                status: 409
+                code: ALREADY_EXISTS
+                message: The resource that a client tried to create already exists.
+    Generic410:
+      description: Gone
+      headers:
+        x-correlator:
+          $ref: "#/components/headers/x-correlator"
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/ErrorInfo"
+              - type: object
+                properties:
+                  status:
+                    enum:
+                      - 410
+                  code:
+                    enum:
+                      - GONE
+          examples:
+            GENERIC_410_GONE:
+              description: Use in notifications flow to allow API Consumer to indicate that its callback is no longer available
+              value:
+                status: 410
+                code: GONE
+                message: Access to the target resource is no longer available.
     Generic422:
       description: Unprocessable Content
       headers:
