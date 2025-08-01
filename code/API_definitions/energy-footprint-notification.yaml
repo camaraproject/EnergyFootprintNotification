@@ -23,42 +23,6 @@ info:
 
     [**Edge Service energy report**](https://github.com/camaraproject/EnergyFootprintNotification/blob/r1.2/documentation/API_documentation/EFN_UserStory_UseCase_1.md)
 
-    **The main elements of the Energy Footprint API are:**
-
-    **ReportCreationRequest:**
-    Information about the target service (as a
-    set of applications) and the period of time of interest.
-    It includes the parameter "service" which is an array of application
-    identifiers. The application identifiers are provided by the CAMARA API
-    used to deploy the applications (e.g. the Edge Application Management API).
-
-    **EnergyResponse:**
-    Provides to the API Consumer the requested information about the energy
-    consumption for the target service, considering all the active instances,
-    in the period of time of interest.
-
-    **CarbonFootprintResponse:**
-    Provides to the API Consumer the information about the carbon footprint for
-    the target service, considering all the active instances, in the period of
-    time of interest.
-    # Authorization and authentication
-    The "Camara Security and Interoperability Profile" provides details of how
-    an API consumer requests an access token. Please refer to Identity and
-    Consent Management
-    (https://github.com/camaraproject/IdentityAndConsentManagement/)
-    for the released version of the profile.
-
-    The specific authorization flows to be used will be agreed upon during the
-    onboarding process, happening between the API consumer and the API
-    provider, taking into account the declared purpose for accessing the API,
-    whilst also being subject to the prevailing legal framework dictated by
-    local legislation.
-
-    In cases where personal data is processed by the API and users can
-    exercise their rights through mechanisms such as opt-in and/or opt-out,
-    the use of three-legged access tokens is mandatory. This ensures that
-    the API remains in compliance with privacy regulations, upholding the
-    principles of transparency and user-centric privacy-by-design.
     ## API Documentation
     ## Details
     The Energy Footprint API provides, to the API Consumer,
@@ -111,6 +75,43 @@ info:
     The related endpoints are:
     - Intent1: /overall-energy-consumption
     - Intent2: /overall-carbon-footprint
+
+    **The main elements of the Energy Footprint API are:**
+
+    **ReportCreationRequest:**
+    Information about the target service (as a
+    set of applications) and the period of time of interest.
+    It includes the parameter "service" which is an array of application
+    identifiers. The application identifiers are provided by the CAMARA API
+    used to deploy the applications (e.g. the Edge Application Management API).
+
+    **EnergyResponse:**
+    Provides to the API Consumer the requested information about the energy
+    consumption for the target service, considering all the active instances,
+    in the period of time of interest.
+
+    **CarbonFootprintResponse:**
+    Provides to the API Consumer the information about the carbon footprint for
+    the target service, considering all the active instances, in the period of
+    time of interest.
+    # Authorization and authentication
+    The "Camara Security and Interoperability Profile" provides details of how
+    an API consumer requests an access token. Please refer to Identity and
+    Consent Management
+    (https://github.com/camaraproject/IdentityAndConsentManagement/)
+    for the released version of the profile.
+
+    The specific authorization flows to be used will be agreed upon during the
+    onboarding process, happening between the API consumer and the API
+    provider, taking into account the declared purpose for accessing the API,
+    whilst also being subject to the prevailing legal framework dictated by
+    local legislation.
+
+    In cases where personal data is processed by the API and users can
+    exercise their rights through mechanisms such as opt-in and/or opt-out,
+    the use of three-legged access tokens is mandatory. This ensures that
+    the API remains in compliance with privacy regulations, upholding the
+    principles of transparency and user-centric privacy-by-design.
     # Additional CAMARA error responses
     The list of error codes in this API specification is not exhaustive.
     Therefore the API specification may not document some non-mandatory error
