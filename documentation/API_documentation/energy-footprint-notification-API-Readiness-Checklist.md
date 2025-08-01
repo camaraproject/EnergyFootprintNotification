@@ -14,7 +14,7 @@ Checklist for API energy-footprint-notification 0.1.0-rc.1 in r1.2
 |  4 | API versioning convention applied            |   M   |         M         |    M    |    M   |   Y  | 0.1.0-rc.1 |
 |  5 | API documentation                            |   M   |         M         |    M    |    M   |   Y  | inline in YAML |
 |  6 | User stories                                 |   O   |         O         |    O    |    M   |   Y  | [link](/documentation/API_documentation/EFN_UserStory_UseCase_1.md) |
-|  7 | Basic API test cases & documentation         |   O   |         M         |    M    |    M   |   Y  | [Test-EC](/code/Test_definitions/energy-footprint-notification-calculatEnergyConsumption.feature), [Test-CF](/code/Test_definitions/energy-footprint-notification-calculateCarbonFootprint.feature) |
+|  7 | Basic API test cases & documentation         |   O   |         M         |    M    |    M   |   Y  | [Test-EC](/code/Test_definitions/energy-footprint-notification-calculateEnergyConsumption.feature), [Test-CF](/code/Test_definitions/energy-footprint-notification-calculateCarbonFootprint.feature) |
 |  8 | Enhanced API test cases & documentation      |   O   |         O         |    O    |    M   |   N  |  |
 |  9 | Test result statement                        |   O   |         O         |    O    |    M   |   N  |      |
 | 10 | API release numbering convention applied     |   M   |         M         |    M    |    M   |   Y  | r1.2 |
