@@ -25,12 +25,12 @@ Sandbox API Repository to describe, develop, document, and test the EnergyFootpr
 
 * Note: Please be aware that the project will have frequent updates to the main branch. There are no compatibility guarantees associated with code in any branch, including main, until a new release is created. For example, changes may be reverted before a release is created. **For best results, use the latest available release**.
 
-* `NEW`: Pre-release [r1.2](https://github.com/camaraproject/EnergyFootprintNotification/releases/tag/r1.2) with energy-footprint-notification v0.1.0-rc.1 is available.
-  * version v0.1.0-rc.1 of the **API energy-footprint-notification** - available [here](https://github.com/camaraproject/EnergyFootprintNotification/tree/r1.2)
+* `The latest public release is [r1.3](https://github.com/camaraproject/EnergyFootprintNotification/releases/tag/r1.3) with energy-footprint-notification v0.1.0 is available.
+  * version v0.1.0 of the **API energy-footprint-notification** - available [here](https://github.com/camaraproject/EnergyFootprintNotification/tree/r1.3)
     * API definitions **with inline documentation**:
-      * OpenAPI [YAML](https://github.com/camaraproject/EnergyFootprintNotification/blob/r1.2/code/API_definitions/energy-footprint-notification.yaml)
-      * [View it on ReDoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/EnergyFootprintNotification/refs/tags/r1.2/code/API_definitions/energy-footprint-notification.yaml&nocors) 
-      * [View it on Swagger Editor](https://camaraproject.github.io/swagger-ui/?url=https://raw.githubusercontent.com/camaraproject/EnergyFootprintNotification/refs/tags/r1.2/code/API_definitions/energy-footprint-notification.yaml)
+      * OpenAPI [YAML](https://github.com/camaraproject/EnergyFootprintNotification/blob/r1.3/code/API_definitions/energy-footprint-notification.yaml)
+      * [View it on ReDoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/EnergyFootprintNotification/refs/tags/r1.3/code/API_definitions/energy-footprint-notification.yaml&nocors) 
+      * [View it on Swagger Editor](https://camaraproject.github.io/swagger-ui/?url=https://raw.githubusercontent.com/camaraproject/EnergyFootprintNotification/refs/tags/r1.3/code/API_definitions/energy-footprint-notification.yaml)
 
 For changes see [CHANGELOG.md](https://github.com/camaraproject/EnergyFootprintNotification/blob/main/CHANGELOG.md)
 

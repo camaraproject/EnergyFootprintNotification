@@ -1,4 +1,4 @@
-Feature: CAMARA Energy Footprint Notification API v0.1.0-rc.1 - Operation calculateEnergyConsumption and energyConsumptionNotification
+Feature: CAMARA Energy Footprint Notification API v0.1.0 - Operation calculateEnergyConsumption and energyConsumptionNotification
 # Input to be provided by the implementation to the tester
 #
 # Implementation indications:
@@ -8,7 +8,7 @@ Feature: CAMARA Energy Footprint Notification API v0.1.0-rc.1 - Operation calcul
 #
   Background: Common energy-footprint-notification setup
     Given an environment at "apiRoot"
-    And the path "/energy-footprint-notification/vwip/calculate-energy-consumption"
+    And the path "/energy-footprint-notification/v0.1/calculate-energy-consumption"
     And the header "Content-Type" is set to "application/json"
     And the header "Authorization" is set to a valid access token
     And the header "x-correlator" complies with the schema at "#/components/schemas/XCorrelator"
