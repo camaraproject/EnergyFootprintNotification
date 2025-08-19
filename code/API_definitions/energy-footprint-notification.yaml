@@ -21,7 +21,7 @@ info:
 
     **Example use case and flow:**
 
-    [**Edge Service energy report**](https://github.com/camaraproject/EnergyFootprintNotification/blob/r1.2/documentation/API_documentation/EFN_UserStory_UseCase_1.md)
+    [**Edge Service energy report**](https://github.com/camaraproject/EnergyFootprintNotification/blob/r1.3/documentation/API_documentation/EFN_UserStory_UseCase_1.md)
 
     ## API Documentation
     ## Details
@@ -125,7 +125,7 @@ info:
     As a specific rule, error `501 - NOT_IMPLEMENTED` can be only a possible
     error response if it is explicitly documented in the API.
 
-  version: wip
+  version: 0.1.0
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
@@ -137,7 +137,7 @@ externalDocs:
 #                                     Servers                              #
 ############################################################################
 servers:
-  - url: "{apiRoot}/energy-footprint/vwip"
+  - url: "{apiRoot}/energy-footprint/v0.1"
     variables:
       apiRoot:
         default: http://localhost:9091
