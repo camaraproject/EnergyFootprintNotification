@@ -14,7 +14,7 @@ info:
     The scenario foresees a service provided by many applications, the Energy
     Footprint API provides the API Consumer (e.g. the Service Provider)
     with the information about the energy consumption and carbon
-    footprint (greenhouse gasses emissions) of the service produced by the
+    footprint (greenhouse gases emissions) of the service produced by the
     active applications instances hosted by the Telco Operator.
     Note: This API is expected to be used in conjunction with, for example,
     the CAMARA Edge Cloud APIs.
