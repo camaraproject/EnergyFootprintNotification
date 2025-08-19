@@ -58,4 +58,3 @@ Feature: CAMARA Energy Footprint Notification API v0.1.0 - Operation calculateEn
     And "/components/schemas/CloudEventEnergy" in the callback should contain the parameter "$.requestID" with the same value as in the 201 response of "/calculate-energy-consumption"
     And "/components/schemas/CloudEventEnergy" in the callback should contain the parameter"$.energyConsumption"
     And the parameter"$.energyConsumption" should be set to the expected value as sum of the energy concumption of all the application instances
-
