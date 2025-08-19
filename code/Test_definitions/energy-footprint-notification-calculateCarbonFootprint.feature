@@ -57,6 +57,4 @@ Feature: CAMARA Energy Footprint Notification API v0.1.0 - Operation calculateCa
     And the callback carries the information defined in "/components/schemas/CloudEventCarbonFootprint"
     And "/components/schemas/CloudEventCarbonFootprint" in the callback should contain the parameter "$.requestID" with the same value as in the 201 response of "/calculate-carbon-footprint"
     And "/components/schemas/CloudEventCarbonFootprint" in the callback should contain the parameter"$.carbonFootprint"
-
     And the parameter"$.carbonFootprint" should be se to the expected value as sum of the carbon footprint of all the application instances
-
