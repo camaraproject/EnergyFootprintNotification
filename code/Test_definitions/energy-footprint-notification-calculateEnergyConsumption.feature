@@ -1,4 +1,4 @@
-Feature: CAMARA Energy Footprint Notification API v0.1.0-rc.1 - Operation calculateEnergyConsumption and energyConsumptionNotification
+Feature: CAMARA Energy Footprint Notification API vwip - Operation calculateEnergyConsumption and energyConsumptionNotification
 # Input to be provided by the implementation to the tester
 #
 # Implementation indications:
@@ -6,6 +6,8 @@ Feature: CAMARA Energy Footprint Notification API v0.1.0-rc.1 - Operation calcul
 # Testing assets:
 # * One or more application instances whose energy consumption can be evaluated.
 #
+# References to OAS spec schemas refer to schemas specified in energy-footprint-notification.yaml, version wip
+
   Background: Common energy-footprint-notification setup
     Given an environment at "apiRoot"
     And the path "/energy-footprint-notification/vwip/calculate-energy-consumption"
