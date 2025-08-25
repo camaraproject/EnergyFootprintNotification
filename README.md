@@ -25,7 +25,7 @@ Sandbox API Repository to describe, develop, document, and test the EnergyFootpr
 
 * Note: Please be aware that the project will have frequent updates to the main branch. There are no compatibility guarantees associated with code in any branch, including main, until a new release is created. For example, changes may be reverted before a release is created. **For best results, use the latest available release**.
 
-* `The latest public release is [r1.3](https://github.com/camaraproject/EnergyFootprintNotification/releases/tag/r1.3) with energy-footprint-notification v0.1.0 is available.
+* `NEW`: The latest public release is [r1.3](https://github.com/camaraproject/EnergyFootprintNotification/releases/tag/r1.3) with energy-footprint-notification v0.1.0 is available.
   * version v0.1.0 of the **API energy-footprint-notification** - available [here](https://github.com/camaraproject/EnergyFootprintNotification/tree/r1.3)
     * API definitions **with inline documentation**:
       * OpenAPI [YAML](https://github.com/camaraproject/EnergyFootprintNotification/blob/r1.3/code/API_definitions/energy-footprint-notification.yaml)
