@@ -1,5 +1,5 @@
 
-# Changelog CAMARA EnergyFootprintNotification
+# Changelog CAMARA EnergyFootprint
 
 ## Table of Contents
 
@@ -21,19 +21,19 @@ The below sections record the changes for each API version in each release as fo
 ## Release Notes
 
 This release contains the definition and documentation of:
-* energy-footprint-notification v0.1.0
+* energy-footprint v0.1.0
 
 The API definition(s) are based on
 * Commonalities v0.6.0
 * Identity and Consent Management v0.4.0
 
-## energy-footprint-notification v0.1.0
-This is the first public release of the CAMARA Energy Footprint Notification API supporting the retrieval of energy consumption information and carbon footprint for a Service running over some application instances typically edge located.
+## energy-footprint v0.1.0
+This is the first release candidate of the CAMARA EnergyFootprint API supporting the retrieval of energy consumption information and carbon footprint for a Service running over some application instances typically edge located.
 
 - API definition **with inline documentation**:
-  - OpenAPI [YAML spec file](https://github.com/camaraproject/EnergyFootprintNotification/blob/r1.3/code/API_definitions/energy-footprint-notification.yaml)
-  - [View it on ReDoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/EnergyFootprintNotification/r1.3/code/API_definitions/energy-footprint-notification.yaml&nocors)
-  - [View it on Swagger Editor](https://camaraproject.github.io/swagger-ui/?url=https://raw.githubusercontent.com/camaraproject/EnergyFootprintNotification/r1.3/code/API_definitions/energy-footprint-notification.yaml)
+  - OpenAPI [YAML spec file](https://github.com/camaraproject/EnergyFootprintNotification/blob/r1.3/code/API_definitions/energy-footprint.yaml)
+  - [View it on ReDoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/EnergyFootprintNotification/r1.3/code/API_definitions/energy-footprint.yaml&nocors)
+  - [View it on Swagger Editor](https://camaraproject.github.io/swagger-ui/?url=https://raw.githubusercontent.com/camaraproject/EnergyFootprintNotification/r1.3/code/API_definitions/energy-footprint.yaml)
 
 ### Added
 * Support for the following use cases: https://github.com/camaraproject/EnergyFootprintNotification/discussions/11
@@ -47,25 +47,25 @@ This is the first public release of the CAMARA Energy Footprint Notification API
 
 ### Fixed
 * operationId calculatEnergyConsumption: https://github.com/camaraproject/EnergyFootprintNotification/issues/88
+* completed the transition of the APi name from EnergyFootprintNotification to EnergyFootprint: https://github.com/camaraproject/EnergyFootprintNotification/pull/98
   
 ### Removed
 
-
-**Full Changelog**: https://github.com/camaraproject/EnergyFootprintNotification/compare/r1.1...r1.3
+**Full Changelog**: https://github.com/camaraproject/EnergyFootprintNotification/commit/r1.3
 
 # r1.2
 
 ## Release Notes
 
 This release contains the definition and documentation of:
-* energy-footprint-notification v0.1.0-rc.1
+* energy-footprint v0.1.0-rc.1
 
 The API definition(s) are based on
 * Commonalities v0.6.0-rc.1
 * Identity and Consent Management v0.4.0-rc.1
 
-## energy-footprint-notification v0.1.0-rc.1
-This is the first release candidate of the CAMARA EnergyFootprintNotification API supporting the retrieval of energy consumption information and carbon footprint for a Service running over some application instances typically edge located.
+## energy-footprint v0.1.0-rc.1
+This is the first release candidate of the CAMARA EnergyFootprint API supporting the retrieval of energy consumption information and carbon footprint for a Service running over some application instances typically edge located.
 
 - API definition **with inline documentation**:
   - OpenAPI [YAML spec file](https://github.com/camaraproject/EnergyFootprintNotification/blob/r1.2/code/API_definitions/energy-footprint-notification.yaml)
@@ -76,6 +76,7 @@ This is the first release candidate of the CAMARA EnergyFootprintNotification AP
 
 ### Changed
 
+* Rename of the API from EnergyFootprintNotification to EnergyFootprint: https://github.com/camaraproject/EnergyFootprintNotification/pull/83
 * Renamed operations: https://github.com/camaraproject/EnergyFootprintNotification/pull/83 
 * Changed OAuth2 with OpenId: https://github.com/camaraproject/EnergyFootprintNotification/pull/83
 * Updated the name of the test file to be coherent with the operationId: https://github.com/camaraproject/EnergyFootprintNotification/pull/83
