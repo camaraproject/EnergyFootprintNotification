@@ -73,8 +73,8 @@ info:
     - Output_Intent2: greenhouse gases emission in tonnes.
 
     The related endpoints are:
-    - Intent1: /overall-energy-consumption
-    - Intent2: /overall-carbon-footprint
+    - Intent1: /calculate-energy-consumption
+    - Intent2: /calculate-carbon-footprint
 
     **The main elements of the Energy Footprint Notification API are:**
 
