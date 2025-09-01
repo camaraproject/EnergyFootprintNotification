@@ -170,7 +170,7 @@ paths:
         - $ref: '#/components/parameters/x-correlator'
       security:
         - openId:
-            - 'energy-footprint:calculate-energy-consumption'
+            - 'energy-footprint-notification:calculate-energy-consumption'
       requestBody:
         description: Defines the application that provides the service and the
          time period under analysis.
@@ -219,7 +219,7 @@ paths:
         - $ref: '#/components/parameters/x-correlator'
       security:
         - openId:
-            - 'energy-footprint:calculate-carbon-footprint'
+            - 'energy-footprint-notification:calculate-carbon-footprint'
       requestBody:
         description: Defines the application that provides the service and the
          time period under analysis.
