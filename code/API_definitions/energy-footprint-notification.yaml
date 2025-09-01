@@ -730,7 +730,7 @@ components:
           type: object
           description: Event details payload
           properties:
-            requestID:
+            requestId:
               type: string
               description: Identifier for the request. This
                parameter correlates this response with the request.
