@@ -10,7 +10,7 @@ Feature: CAMARA Energy Footprint API v0.1.0 - Operation calculateCarbonFootprint
 
   Background: Common calculate-carbon-footprint setup
     Given an environment at "apiRoot"
-    And the path "/energy-footprint-notification/v0.1/calculate-carbon-footprint"
+    And the path "/energy-footprint/v0.1/calculate-carbon-footprint"
     And the header "Content-Type" is set to "application/json"
     And the header "Authorization" is set to a valid access token
     And the header "x-correlator" complies with the schema at "#/components/schemas/XCorrelator"
@@ -58,4 +58,5 @@ Feature: CAMARA Energy Footprint API v0.1.0 - Operation calculateCarbonFootprint
     And "/components/schemas/CloudEventCarbonFootprint" in the callback should contain the parameter "$.requestID" with the same value as in the 201 response of "/calculate-carbon-footprint"
     And "/components/schemas/CloudEventCarbonFootprint" in the callback should contain the parameter"$.carbonFootprint"
     And the parameter"$.carbonFootprint" should be se to the expected value as sum of the carbon footprint of all the application instances
+
 
