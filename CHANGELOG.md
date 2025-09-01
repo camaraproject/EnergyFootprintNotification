@@ -44,10 +44,10 @@ This is the first release candidate of the CAMARA EnergyFootprint API supporting
 * Updated the name of the test file to be coherent with the operationId: https://github.com/camaraproject/EnergyFootprintNotification/pull/83
 * info.description reordering: https://github.com/camaraproject/EnergyFootprintNotification/pull/92
 * ErrorInfo update according to Commonalities 6.0 public release: https://github.com/camaraproject/EnergyFootprintNotification/pull/95
+* rallback of the API name to EnergyFootprintNotification from EnergyFootprint: https://github.com/camaraproject/EnergyFootprintNotification/pull/98
 
 ### Fixed
 * operationId calculatEnergyConsumption: https://github.com/camaraproject/EnergyFootprintNotification/issues/88
-* completed the transition of the APi name from EnergyFootprintNotification to EnergyFootprint: https://github.com/camaraproject/EnergyFootprintNotification/pull/98
   
 ### Removed
 
