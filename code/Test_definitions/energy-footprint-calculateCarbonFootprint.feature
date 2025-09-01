@@ -1,4 +1,4 @@
-Feature: CAMARA Energy Footprint Notification API v0.1.0 - Operation calculateCarbonFootprint and carbonFootprintNotification
+Feature: CAMARA Energy Footprint API v0.1.0 - Operation calculateCarbonFootprint and carbonFootprintNotification
 # Input to be provided by the implementation to the tester
 #
 # Implementation indications:
@@ -6,7 +6,7 @@ Feature: CAMARA Energy Footprint Notification API v0.1.0 - Operation calculateCa
 # Testing assets:
 # * One or more application instances whose carbon footprint can be evaluated.
 #
-# References to OAS spec schemas refer to schemas specified in energy-footprint-notification.yaml, version 0.1.0
+# References to OAS spec schemas refer to schemas specified in energy-footprint.yaml, version 0.1.0
 
   Background: Common calculate-carbon-footprint setup
     Given an environment at "apiRoot"
@@ -58,3 +58,4 @@ Feature: CAMARA Energy Footprint Notification API v0.1.0 - Operation calculateCa
     And "/components/schemas/CloudEventCarbonFootprint" in the callback should contain the parameter "$.requestID" with the same value as in the 201 response of "/calculate-carbon-footprint"
     And "/components/schemas/CloudEventCarbonFootprint" in the callback should contain the parameter"$.carbonFootprint"
     And the parameter"$.carbonFootprint" should be se to the expected value as sum of the carbon footprint of all the application instances
+
