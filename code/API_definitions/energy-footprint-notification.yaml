@@ -300,7 +300,7 @@ components:
             description: payload containing the calculated energy consumption
             required: true
             content:
-              application/json:
+              application/cloudevents+json:
                 schema:
                   allOf:
                     - $ref: '#/components/schemas/CloudEvent'
@@ -309,7 +309,7 @@ components:
                     source: "https://notificationSendServer12.supertelco.com"
                     type: "org.camaraproject.energy-footprint-notification.v1.energy"
                     specversion: "1.0"
-                    datacontenttype: "application/json"
+                    datacontenttype: "application/cloudevents+json"
                     data:
                       requestId: "3fa85f64-5717-4562-b3fc-2c963f66afa6"
                       energyConsumption: 12.87
@@ -353,7 +353,7 @@ components:
           requestBody:
             description: payload containing the calculated energy consumption
             content:
-              application/json:
+              application/cloudevents+json:
                 schema:
                   $ref: '#/components/schemas/CloudEvent'
                 example:
@@ -361,7 +361,7 @@ components:
                   source: "https://notificationSendServer12.supertelco.com"
                   type: "org.camaraproject.energy-footprint-notification.v1.carbon-footprint"
                   specversion: "1.0"
-                  datacontenttype: "application/json"
+                  datacontenttype: "application/cloudevents+json"
                   data:
                     requestId: "3fa85f64-5717-4562-b3fc-2c963f66afa6"
                     carbonFootprint: 45.568
