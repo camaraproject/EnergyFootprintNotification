@@ -361,7 +361,7 @@ components:
                   source: "https://notificationSendServer12.supertelco.com"
                   type: "org.camaraproject.energy-footprint-notification.v1.carbon-footprint"
                   specversion: "1.0"
-                  datacontenttype: "application/cloudevents+json"
+                  datacontenttype: "application/json"
                   data:
                     requestId: "3fa85f64-5717-4562-b3fc-2c963f66afa6"
                     carbonFootprint: 45.568
