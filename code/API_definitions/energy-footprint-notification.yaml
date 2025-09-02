@@ -300,7 +300,7 @@ components:
             description: payload containing the calculated energy consumption
             required: true
             content:
-              application/json:
+              application/cloudevents+json:
                 schema:
                   allOf:
                     - $ref: '#/components/schemas/CloudEvent'
@@ -353,7 +353,7 @@ components:
           requestBody:
             description: payload containing the calculated energy consumption
             content:
-              application/json:
+              application/cloudevents+json:
                 schema:
                   $ref: '#/components/schemas/CloudEvent'
                 example:
@@ -730,7 +730,7 @@ components:
           type: object
           description: Event details payload
           properties:
-            requestID:
+            requestId:
               type: string
               description: Identifier for the request. This
                parameter correlates this response with the request.
