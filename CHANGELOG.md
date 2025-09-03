@@ -46,7 +46,7 @@ This is the first public relase of the API, the modification reported below ("Ch
 * Updated the name of the test file to be coherent with the operationId: https://github.com/camaraproject/EnergyFootprintNotification/pull/83
 * info.description reordering: https://github.com/camaraproject/EnergyFootprintNotification/pull/92
 * ErrorInfo update according to Commonalities 6.0 public release: https://github.com/camaraproject/EnergyFootprintNotification/pull/95
-* Rallback of the API name to EnergyFootprintNotification from EnergyFootprint: https://github.com/camaraproject/EnergyFootprintNotification/pull/103
+* Rollback of the API name to EnergyFootprintNotification from EnergyFootprint: https://github.com/camaraproject/EnergyFootprintNotification/pull/103
 
 
 ### Fixed
