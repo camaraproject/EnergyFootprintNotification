@@ -31,9 +31,9 @@ The API definition(s) are based on
 This is the first public release of the CAMARA EnergyFootprintNotification API supporting the retrieval of energy consumption information and carbon footprint for a service running over some application instances typically edge located.
 
 - API definition **with inline documentation**:
-  - OpenAPI [YAML spec file](https://github.com/camaraproject/EnergyFootprintNotification/blob/r1.3/code/API_definitions/energy-footprint.yaml)
-  - [View it on ReDoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/EnergyFootprintNotification/r1.3/code/API_definitions/energy-footprint.yaml&nocors)
-  - [View it on Swagger Editor](https://camaraproject.github.io/swagger-ui/?url=https://raw.githubusercontent.com/camaraproject/EnergyFootprintNotification/r1.3/code/API_definitions/energy-footprint.yaml)
+  - OpenAPI [YAML spec file](https://github.com/camaraproject/EnergyFootprintNotification/blob/r1.3/code/API_definitions/energy-footprint-notification.yaml)
+  - [View it on ReDoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/EnergyFootprintNotification/r1.3/code/API_definitions/energy-footprint-notification.yaml&nocors)
+  - [View it on Swagger Editor](https://camaraproject.github.io/swagger-ui/?url=https://raw.githubusercontent.com/camaraproject/EnergyFootprintNotification/r1.3/code/API_definitions/energy-footprint-notification.yaml)
 
 This is the first public relase of the API, the modification reported below ("Changed" and "Fixed" sections) are with respect to v0.1.0-alpha.1.
 
