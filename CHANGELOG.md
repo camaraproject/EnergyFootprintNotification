@@ -35,7 +35,7 @@ This is the first public release of the CAMARA EnergyFootprintNotification API s
   - [View it on ReDoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/EnergyFootprintNotification/r1.3/code/API_definitions/energy-footprint-notification.yaml&nocors)
   - [View it on Swagger Editor](https://camaraproject.github.io/swagger-ui/?url=https://raw.githubusercontent.com/camaraproject/EnergyFootprintNotification/r1.3/code/API_definitions/energy-footprint-notification.yaml)
 
-This is the first public relase of the API, the modification reported below ("Changed" and "Fixed" sections) are with respect to v0.1.0-alpha.1.
+This is the first public relase of the API, the modification reported below ("Changed" and "Fixed" sections) are with respect to v0.1.0-rc.1 in r1.2.
 
 ### Added
 * Support for the following use cases: https://github.com/camaraproject/EnergyFootprintNotification/discussions/11
