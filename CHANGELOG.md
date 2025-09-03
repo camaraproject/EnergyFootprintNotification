@@ -28,7 +28,7 @@ The API definition(s) are based on
 * Identity and Consent Management v0.4.0
 
 ## energy-footprint-notification v0.1.0
-This is the first release candidate of the CAMARA EnergyFootprintNotification API supporting the retrieval of energy consumption information and carbon footprint for a service running over some application instances typically edge located.
+This is the first public release of the CAMARA EnergyFootprintNotification API supporting the retrieval of energy consumption information and carbon footprint for a service running over some application instances typically edge located.
 
 - API definition **with inline documentation**:
   - OpenAPI [YAML spec file](https://github.com/camaraproject/EnergyFootprintNotification/blob/r1.3/code/API_definitions/energy-footprint.yaml)
