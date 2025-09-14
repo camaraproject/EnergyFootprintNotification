@@ -1,4 +1,4 @@
-Feature: CAMARA Energy Footprint Notification API vwip - Operation calculateCarbonFootprint and carbonFootprintNotification
+Feature: CAMARA Energy Footprint Notification API v0.1.0 - Operation calculateCarbonFootprint and carbonFootprintNotification
 # Input to be provided by the implementation to the tester
 #
 # Implementation indications:
@@ -6,11 +6,11 @@ Feature: CAMARA Energy Footprint Notification API vwip - Operation calculateCarb
 # Testing assets:
 # * One or more application instances whose carbon footprint can be evaluated.
 #
-# References to OAS spec schemas refer to schemas specified in energy-footprint-notification.yaml, version wip
+# References to OAS spec schemas refer to schemas specified in energy-footprint-notification.yaml, version 0.1.0
 
   Background: Common calculate-carbon-footprint setup
     Given an environment at "apiRoot"
-    And the path "/energy-footprint-notification/vwip/calculate-carbon-footprint"
+    And the path "/energy-footprint-notification/v0.1/calculate-carbon-footprint"
     And the header "Content-Type" is set to "application/json"
     And the header "Authorization" is set to a valid access token
     And the header "x-correlator" complies with the schema at "#/components/schemas/XCorrelator"
