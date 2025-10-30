@@ -1,4 +1,4 @@
-Feature: CAMARA Energy Footprint Notification API v0.1.0 - Operation calculateEnergyConsumption and energyConsumptionNotification
+Feature: CAMARA Energy Footprint Notification API vwip - Operation calculateEnergyConsumption and energyConsumptionNotification
 # Input to be provided by the implementation to the tester
 #
 # Implementation indications:
