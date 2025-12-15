@@ -6,11 +6,11 @@ Feature: CAMARA Energy Footprint Notification API vwip - Operation calculateEner
 # Testing assets:
 # * One or more application instances whose energy consumption can be evaluated.
 #
-# References to OAS spec schemas refer to schemas specified in energy-footprint-notification.yaml, version 0.1.0
+# References to OAS spec schemas refer to schemas specified in energy-footprint-notification.yaml, version vwip
 
   Background: Common energy-footprint-notification setup
     Given an environment at "apiRoot"
-    And the path "/energy-footprint-notification/v0.1/calculate-energy-consumption"
+    And the path "/energy-footprint-notification/vwip/calculate-energy-consumption"
     And the header "Content-Type" is set to "application/json"
     And the header "Authorization" is set to a valid access token
     And the header "x-correlator" complies with the schema at "#/components/schemas/XCorrelator"
@@ -57,4 +57,5 @@ Feature: CAMARA Energy Footprint Notification API vwip - Operation calculateEner
     And the callback carries the information defined in "/components/schemas/CloudEventEnergy"
     And "/components/schemas/CloudEventEnergy" in the callback should contain the parameter "$.requestId" with the same value as in the 201 response of "/calculate-energy-consumption"
     And "/components/schemas/CloudEventEnergy" in the callback should contain the parameter"$.energyConsumption"
+
     And the parameter"$.energyConsumption" should be set to the expected value as sum of the energy consumption of all the application instances
