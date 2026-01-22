@@ -452,7 +452,7 @@ components:
             - POST
     Protocol:
       type: string
-      enum: ["HTTP", "MQTT3", "MQTT5", "AMQP", "NATS", "KAFKA"]
+      enum: ["HTTP"]
       description: Identifier of a delivery protocol. Only HTTP is allowed for now
       example: "HTTP"
     Config:
@@ -1032,3 +1032,4 @@ components:
                 status: 429
                 code: TOO_MANY_REQUESTS
                 message: Rate limit reached.
+
