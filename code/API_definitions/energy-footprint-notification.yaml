@@ -31,7 +31,8 @@ info:
     of some applications. The API provides information about the aggregated
     energy consumption and carbon footprint considering all the active instances
     and network involvement, in a specific time period in which the service is
-    provided to end users. The application instances that are monitored
+    provided to end users.
+    The application instances that are monitored
     for their energy consumption are the one managed by the Operator and that
     run on top of the Operator’s infrastructure. The service is deployed and
     managed via the Operator Platform (e.g via the [CAMARA Edge Cloud APIs](htt\
@@ -53,7 +54,8 @@ info:
     aware of the energy consumption of the service. The Service Provider,
     via an Energy Footprint Notification API Consumer, invokes the Energy Footprint Notification API with the identifiers of the
     application instances supporting the target service. A period of
-    time can be specified. The Energy Footprint Notification API provides back the energy consumption by
+    time can be specified; it must start after the API subscription and can be limited.
+    The Energy Footprint Notification API provides back the energy consumption by
     the service in that period of time.  The Energy Footprint Notification API also provides back the
     carbon footprint related to the running of the service.
     The Energy Footprint Notification API is an intent based API.
@@ -81,6 +83,7 @@ info:
     **ReportCreationRequest:**
     Information about the target service (as a
     set of applications) and the period of time of interest.
+    The period must start after the API subscription and can be limited.
     It includes the parameter "service" which is an array of application
     identifiers. The application identifiers are provided by the CAMARA API
     used to deploy the applications (e.g. the Edge Application Management API).
@@ -203,6 +206,8 @@ paths:
           $ref: "#/components/responses/Generic403"
         "404":
           $ref: "#/components/responses/Generic404"
+        "422":
+          $ref: "#/components/responses/Generic422"
       callbacks:
         onEnergyConsumption:
           $ref: "#/components/callbacks/onEnergyConsumptionCalculation"
@@ -252,6 +257,8 @@ paths:
           $ref: "#/components/responses/Generic403"
         "404":
           $ref: "#/components/responses/Generic404"
+        "422":
+          $ref: "#/components/responses/Generic422"
       callbacks:
         onCarbonFootprintCalculation:
           $ref: "#/components/callbacks/onCarbonFootprintCalculation"
@@ -892,7 +899,7 @@ components:
                   code:
                     enum:
                       - NOT_FOUND
-                      - UNKNOWN_APPLICATION_IDENTIFIER
+                      - ENERGY_FOOTPRINT_NOTIFICATION.UNKNOWN_APPLICATION_IDENTIFIER
           examples:
             GENERIC_404_NOT_FOUND:
               description: Resource is not found
@@ -904,8 +911,8 @@ components:
               description: Application Identifier unknown
               value:
                 status: 404
-                code: UNKNOWN_APPLICATION_IDENTIFIER
-                message: the target application is unknown.
+                code: ENERGY_FOOTPRINT_NOTIFICATION.UNKNOWN_APPLICATION_IDENTIFIER
+                message: The target application is unknown.
     Generic409:
       description: Conflict
       headers:
@@ -981,7 +988,7 @@ components:
                   code:
                     enum:
                       - SERVICE_NOT_APPLICABLE
-                      - MISSING_IDENTIFIER
+                      - ENERGY_FOOTPRINT_NOTIFICATION.TIME_PERIOD_OUT_OF_RANGE
           examples:
             GENERIC_422_SERVICE_NOT_APPLICABLE:
               description: Service not applicable for the provided
@@ -991,13 +998,12 @@ components:
                 code: SERVICE_NOT_APPLICABLE
                 message: The service is not available for the
                   provided identifier.
-            GENERIC_422_MISSING_IDENTIFIER:
-              description: the Application Identifier is not included in the
-                request
+            GENERIC_422_TIME_PERIOD_OUT_OF_RANGE:
+              description: The parameter "timePeriod" in the request doesn't provide a correct range. The range can be too long with respect to the maximum possibile duration supported by the platform. Or startDate/endDate are not choerent with the API subscription.
               value:
                 status: 422
-                code: MISSING_IDENTIFIER
-                message: unspecified Application Identifier.
+                code: ENERGY_FOOTPRINT_NOTIFICATION.TIME_PERIOD_OUT_OF_RANGE
+                message: The requested time period for the evaluation is not a valid range.
     Generic429:
       description: Too Many Requests
       headers:
